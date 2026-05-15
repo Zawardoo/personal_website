@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:api.anthropic.com)",
+      "Bash(gunzip -c \"webfetch-1777733924751-88ja1g.bin\")",
+      "Bash(gunzip -c C:/Users/speed/.claude/projects/C--Users-speed-Documents-moj-web/14f242c4-8fd4-4ddb-b2c0-8a6d511ac9b2/tool-results/webfetch-1777733924751-88ja1g.bin)",
+      "Bash(tar -x -O \"personal-website/project/Jozef Anyalai.html\")",
+      "Bash(tar -t)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(where python *)",
+      "Bash(npx -y http-server -p 8090 --silent)",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "Bash(taskkill /F /IM \"node.exe\" /FI \"WINDOWTITLE eq *http-server*\")",
+      "Bash(netstat -ano)",
+      "Bash(findstr :8091)",
+      "Bash(findstr LISTENING)",
+      "PowerShell(Stop-Process -Id 23528 -Force)"
+    ]
+  }
+}
