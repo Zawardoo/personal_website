@@ -236,6 +236,52 @@ nav.scrolled {
 /* Offset scroll targets so fixed nav doesn't cover headings */
 section[id] { scroll-margin-top: 80px; }
 
+/* ---------- CV DROPDOWN ---------- */
+.cv-dropdown {
+  position: relative;
+  display: inline-flex;
+}
+.cv-menu {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) scale(0.95);
+  background: rgba(12, 10, 22, 0.92);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 160px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+  z-index: 20;
+}
+.cv-dropdown.open .cv-menu {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) scale(1);
+}
+.cv-menu a {
+  display: block;
+  padding: 10px 14px;
+  border-radius: 8px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 500;
+  transition: color 0.2s, background 0.2s;
+  white-space: nowrap;
+}
+.cv-menu a:hover {
+  color: var(--text);
+  background: rgba(139, 92, 246, 0.10);
+}
+
 /* ---------- HERO ---------- */
 /*
   Entrance animation — each hero element slides in from below with a
@@ -853,8 +899,9 @@ footer { padding: 32px; border-top: 1px solid var(--border); background: var(--b
   inset: 0;
   z-index: 10;
   display: flex;
-  align-items: center;
+  align-items: safe center;
   justify-content: center;
+  overflow-y: auto;
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.5s ease;
@@ -867,6 +914,8 @@ footer { padding: 32px; border-top: 1px solid var(--border); background: var(--b
   flex-direction: column;
   align-items: center;
   gap: 48px;
+  margin: auto;
+  padding: 40px 0;
 }
 
 /* --- Header --- */

@@ -75,6 +75,38 @@ export function initRouter() {
     }
   });
 
+  // Intercept in-page anchor links (href="#section-id") — smooth scroll
+  // instead of changing the hash (which would trigger popstate → splash)
+  document.addEventListener('click', e => {
+    const link = e.target.closest('a[href^="#"]');
+    if (!link) return;
+    const hash = link.getAttribute('href').slice(1);
+    // Let view-level hashes (testing/webdev) pass through to popstate
+    if (!hash || hash === 'testing' || hash === 'webdev') return;
+    const target = document.getElementById(hash);
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+
+  // CV dropdown toggle
+  document.querySelectorAll('.cv-trigger').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      const dd = btn.closest('.cv-dropdown');
+      // Close any other open dropdowns
+      document.querySelectorAll('.cv-dropdown.open').forEach(d => {
+        if (d !== dd) d.classList.remove('open');
+      });
+      dd.classList.toggle('open');
+    });
+  });
+  // Close on outside click or after download
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.cv-dropdown.open').forEach(d => d.classList.remove('open'));
+  });
+
   // Initial state from URL hash
   const initHash = location.hash.replace('#', '');
   if (initHash === 'testing' || initHash === 'webdev') {
