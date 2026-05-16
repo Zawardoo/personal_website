@@ -54,7 +54,7 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
 
   const formType  = form === 'webdev' ? 'Web Dev Inquiry' : 'Testing / QA Inquiry';
   const timestamp = new Date().toISOString();
-  const recipient = process.env.CONTACT_EMAIL || 'hello@anyalai.dev';
+  const recipient = process.env.CONTACT_EMAIL || 'hello@jozefanyalai.com';
 
   console.log(`\n  New ${formType} from ${name} <${email}> at ${timestamp}`);
 

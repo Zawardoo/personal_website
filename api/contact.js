@@ -55,7 +55,7 @@ module.exports = async function handler(req, res) {
   const resend    = new Resend(process.env.RESEND_API_KEY);
   const formType  = form === 'webdev' ? 'Web Dev Inquiry' : 'Testing / QA Inquiry';
   const timestamp = new Date().toISOString();
-  const recipient = process.env.CONTACT_EMAIL || 'hello@anyalai.dev';
+  const recipient = process.env.CONTACT_EMAIL || 'hello@jozefanyalai.com';
   const sender    = process.env.FROM_EMAIL || 'Portfolio <onboarding@resend.dev>';
 
   try {
