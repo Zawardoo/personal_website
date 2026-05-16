@@ -944,6 +944,12 @@ footer { padding: 32px; border-top: 1px solid var(--border); background: var(--b
   margin: 0 auto;
   line-height: 1.55;
 }
+.splash-question {
+  font-size: clamp(16px, 2vw, 20px);
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 12px;
+}
 
 /* --- Cards --- */
 .splash-cards {

@@ -4,14 +4,15 @@
 
 const SK = {
   // ---- Splash ----
-  'splash.eyebrow':     'QA Automatizacia · Web Development',
+  'splash.eyebrow':     'QA Automatizácia · Web Development',
   'splash.sub':         'Inžinier zo Slovenska. Staviam testovacie súpravy, ktoré chytia bugy, a weby, ktoré žiadne nemajú.',
-  'splash.testing.title': 'Testovanie',
+  'splash.question':    'Čo hľadáte?',
+  'splash.testing.title': 'Potrebujete spoľahlivú automatizáciu testov?',
   'splash.testing.desc':  'QA automatizácia, end-to-end testy, CI/CD pipelines a infraštruktúra, ktorá udržiava fintech spoľahlivým.',
-  'splash.testing.cta':   'Preskúmať',
-  'splash.webdev.title':  'Web Dev',
+  'splash.testing.cta':   'Ukázať viac',
+  'splash.webdev.title':  'Potrebujete web na mieru?',
   'splash.webdev.desc':   'Weby a full-stack aplikácie na mieru. Žiadne šablóny — dizajnované a kódované od nuly.',
-  'splash.webdev.cta':    'Preskúmať',
+  'splash.webdev.cta':    'Ukázať viac',
 
   // ---- Nav ----
   'nav.home':       'Domov',
@@ -172,7 +173,7 @@ const SK = {
   'foot.contact': 'Kontakt',
 };
 
-let lang = localStorage.getItem('lang') || 'en';
+let lang = localStorage.getItem('lang') || 'sk';
 const cache = new Map();
 const phCache = new Map();
 
@@ -229,12 +230,8 @@ export function initI18n() {
     splashFooter.appendChild(createToggle());
   }
 
-  // Apply stored language on load
-  if (lang === 'sk') {
-    requestAnimationFrame(() => applyLang('sk'));
-  } else {
-    document.querySelectorAll('.lang-toggle span[data-lang="en"]').forEach(s => s.classList.add('active'));
-  }
+  // Apply language on load
+  requestAnimationFrame(() => applyLang(lang));
 
   window.i18n = { applyLang, getLang: () => lang };
 }
