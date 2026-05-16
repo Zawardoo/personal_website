@@ -1,0 +1,10 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": ".",
+  "functions": {
+    "api/contact.js": {
+      "memory": 128,
+      "maxDuration": 10
+    }
+  }
+}
