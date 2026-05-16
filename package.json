@@ -1,0 +1,28 @@
+{
+  "name": "moj_web",
+  "version": "1.0.0",
+  "description": "Personal portfolio site for Jozef Anyalai, QA Automation / Backend / DevOps engineer.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "node build.js",
+    "build:dev": "node build.js --dev",
+    "dev": "npx http-server -p 8092 -c-1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "clean-css-cli": "^5.6.3",
+    "esbuild": "^0.28.0",
+    "javascript-obfuscator": "^5.4.2"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.5.2",
+    "helmet": "^8.1.0",
+    "resend": "^6.12.3"
+  }
+}
