@@ -2,11 +2,36 @@
 // sphere/index.js — WebGL renderer, input handling, render loop
 // ============================================================
 
-import { VS, FS } from './shaders.js';
+import { VS, makeFS } from './shaders.js';
 import {
   VIEWS, makeSphere, lerpSphere,
   getHitSphere, pickActive, updateCursorFor, accDrag,
 } from './state.js';
+
+// ---- Quality tier detection ----
+function detectQuality(gl) {
+  // Check for mobile / low-end signals
+  const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+  const cores = navigator.hardwareConcurrency || 2;
+
+  // GPU renderer string (when available)
+  const dbg = gl.getExtension('WEBGL_debug_renderer_info');
+  const renderer = dbg ? gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL).toLowerCase() : '';
+
+  // Known weak GPUs
+  const weakGPU = /mali-4|mali-t[67]|adreno\s?[23]\d\d|powervr\s?sgx|intel\s?hd\s?(3|4[05])\d\d|gma/i.test(renderer);
+
+  if (weakGPU || (isMobile && cores <= 4)) return 0;  // low
+  if (isMobile || cores <= 4) return 1;                // medium
+  return 2;                                            // high
+}
+
+function getDPR(quality) {
+  const raw = window.devicePixelRatio || 1;
+  if (quality === 0) return Math.min(raw, 0.75);  // render at 75% on weak devices
+  if (quality === 1) return Math.min(raw, 1.0);   // cap at 1× on medium
+  return Math.min(raw, 1.5);                       // cap at 1.5× on desktop
+}
 
 export function initSphere() {
   const canvas = document.getElementById('sphereCanvas');
@@ -19,6 +44,10 @@ export function initSphere() {
 
   gl.enable(gl.BLEND);
   gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+
+  // ---- Detect quality & compile appropriate shader ----
+  let quality = detectQuality(gl);
+  let dprCap  = getDPR(quality);
 
   // ---- Compile shaders ----
   function mkShader(type, src) {
@@ -33,17 +62,31 @@ export function initSphere() {
     return s;
   }
 
-  const vs = mkShader(gl.VERTEX_SHADER, VS);
-  const fs = mkShader(gl.FRAGMENT_SHADER, FS);
-  if (!vs || !fs) return;
+  function buildProgram(q) {
+    const vs = mkShader(gl.VERTEX_SHADER, VS);
+    const fs = mkShader(gl.FRAGMENT_SHADER, makeFS(q));
+    if (!vs || !fs) return null;
 
-  const prog = gl.createProgram();
-  gl.attachShader(prog, vs);
-  gl.attachShader(prog, fs);
-  gl.linkProgram(prog);
-  if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
-    console.warn(gl.getProgramInfoLog(prog));
-    return;
+    const prog = gl.createProgram();
+    gl.attachShader(prog, vs);
+    gl.attachShader(prog, fs);
+    gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
+      console.warn(gl.getProgramInfoLog(prog));
+      return null;
+    }
+    return prog;
+  }
+
+  let prog = buildProgram(quality);
+  if (!prog) {
+    // Fallback: try lower quality
+    if (quality > 0) {
+      quality = 0;
+      dprCap = getDPR(0);
+      prog = buildProgram(0);
+    }
+    if (!prog) return;
   }
   gl.useProgram(prog);
 
@@ -64,7 +107,7 @@ export function initSphere() {
 
   // ---- Resize ----
   function resize() {
-    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    const dpr = Math.min(window.devicePixelRatio || 1, dprCap);
     canvas.width  = Math.round(window.innerWidth  * dpr);
     canvas.height = Math.round(window.innerHeight * dpr);
     gl.viewport(0, 0, canvas.width, canvas.height);
@@ -145,11 +188,53 @@ export function initSphere() {
 
   window.addEventListener('touchend', () => { dragging = false; }, { passive: true });
 
+  // ---- Adaptive frame rate: downgrade if running slow ----
+  let frameTimes = [];
+  let adaptChecked = false;
+
+  function checkAdaptive(now) {
+    if (adaptChecked || quality === 0) return;
+    frameTimes.push(now);
+    if (frameTimes.length < 90) return;  // sample ~1.5s of frames
+
+    // Measure average frame time from the last 60 frames
+    const recent = frameTimes.slice(-60);
+    let totalDelta = 0;
+    for (let i = 1; i < recent.length; i++) totalDelta += recent[i] - recent[i - 1];
+    const avgMs = totalDelta / (recent.length - 1);
+
+    adaptChecked = true;
+    frameTimes = [];
+
+    // If average frame time > 28ms (~35fps), downgrade
+    if (avgMs > 28 && quality > 0) {
+      quality = quality - 1;
+      dprCap = getDPR(quality);
+      const newProg = buildProgram(quality);
+      if (newProg) {
+        gl.useProgram(newProg);
+        // Re-bind attribute
+        const newAPos = gl.getAttribLocation(newProg, 'a_pos');
+        gl.enableVertexAttribArray(newAPos);
+        gl.vertexAttribPointer(newAPos, 2, gl.FLOAT, false, 0, 0);
+        // Re-fetch uniforms
+        ['u_res','u_time','u_mouse',
+         'u_s1_pos','u_s1_opacity','u_rot1','u_cpos1','u_cforce1','u_drag1',
+         'u_s2_pos','u_s2_opacity','u_rot2','u_cpos2','u_cforce2','u_drag2',
+        ].forEach(name => { u[name] = gl.getUniformLocation(newProg, name); });
+        resize();  // re-apply DPR cap
+        adaptChecked = false;  // allow another check at the new tier
+      }
+    }
+  }
+
   // ---- Render loop ----
   const t0 = performance.now();
 
-  function draw() {
+  function draw(now) {
     requestAnimationFrame(draw);
+
+    checkAdaptive(now);
 
     mouse.x += (mouse.tx - mouse.x) * 0.055;
     mouse.y += (mouse.ty - mouse.y) * 0.055;
@@ -190,7 +275,7 @@ export function initSphere() {
 
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
   }
-  draw();
+  draw(performance.now());
 
   // ---- Public API ----
   window.sphereCtrl = { setState, getHitSphere: (cx, cy) => getHitSphere(s1, s2, cx, cy) };

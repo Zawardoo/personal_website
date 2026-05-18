@@ -39,10 +39,22 @@ These control where `updateCursorUV()` maps cursor screen coordinates into shade
 
 A fullscreen quad (`TRIANGLE_STRIP`) with a fragment shader that ray-marches a 2D signed distance field and reconstructs a 3D normal for lighting.
 
+### Quality tiers (adaptive performance)
+
+The shader is generated at runtime via `makeFS(quality)` with three tiers:
+
+| Tier | DPR cap | FBM octaves | Satellites | Bump mapping | Caustic | Normal diffs |
+|------|---------|-------------|------------|-------------|---------|-------------|
+| 0 (low) | 0.75 | 2 | 2 | off | off | forward (2 calls) |
+| 1 (medium) | 1.0 | 2 | 3 | on | off | forward (2 calls) |
+| 2 (high) | 1.5 | 3 | 3 | on | on | central (4 calls) |
+
+Detection: GPU renderer string + mobile UA + `hardwareConcurrency`. If frame time exceeds 28ms (~35fps) after 90 frames, auto-downgrades one tier and recompiles the shader.
+
 ### Canvas setup
 
 - `position: fixed; inset: 0; z-index: 0; pointer-events: none` — fullscreen, behind all content
-- DPR-aware sizing: `canvas.width = innerWidth * min(devicePixelRatio, 2)`
+- DPR-aware sizing with tier-dependent cap (see quality tiers above)
 - `alpha: true, premultipliedAlpha: true` + `blendFunc(ONE, ONE_MINUS_SRC_ALPHA)` for correct transparency compositing
 
 ### Shader: SDF metaball system

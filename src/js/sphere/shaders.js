@@ -7,8 +7,16 @@ export const VS = `
   void main() { gl_Position = vec4(a_pos, 0.0, 1.0); }
 `;
 
-export const FS = `
-  precision highp float;
+// Quality tiers: 0 = low (old phones), 1 = medium, 2 = high (desktop)
+export function makeFS(quality) {
+  const FBM_OCT   = quality >= 2 ? 3 : 2;          // fbm octave count
+  const SAT_COUNT = quality >= 1 ? 3 : 2;           // satellite droplets
+  const DO_BUMP   = quality >= 1;                    // bump mapping
+  const DO_CAUSTIC = quality >= 2;                   // caustic effect
+  const CENTRAL   = quality >= 2;                    // central vs forward diff
+
+  return `
+  precision ${quality >= 2 ? 'highp' : 'mediump'} float;
   uniform vec2  u_res;
   uniform float u_time;
   uniform vec2  u_mouse;
@@ -50,7 +58,7 @@ export const FS = `
 
   float fbm(vec3 p){
     float v=0.,a=.5;
-    for(int i=0;i<3;i++){ v+=a*n3(p); p=p*2.07+vec3(1.7,9.2,5.1); a*=.5; }
+    for(int i=0;i<${FBM_OCT};i++){ v+=a*n3(p); p=p*2.07+vec3(1.7,9.2,5.1); a*=.5; }
     return v;
   }
 
@@ -83,7 +91,7 @@ export const FS = `
       f = smax(f, blobR - length(p - dDir*dist), 0.13);
     }
 
-    for(int i=0; i<3; i++){
+    for(int i=0; i<${SAT_COUNT}; i++){
       float fi    = float(i);
       float phase = fi * 1.25663706;
       float osc   = 0.28 + fi * 0.13;
@@ -147,10 +155,12 @@ export const FS = `
     float dMag = length(drag);
     float R    = 0.34;
 
-    // Normal reconstruction via central differences
-    float e2  = 0.015;
-    float gfx = liquidField(uv+vec2(e2,0.), T, drag) - liquidField(uv-vec2(e2,0.), T, drag);
-    float gfy = liquidField(uv+vec2(0.,e2), T, drag) - liquidField(uv-vec2(0.,e2), T, drag);
+    // Normal reconstruction via ${CENTRAL ? 'central' : 'forward'} differences
+    float e2  = ${CENTRAL ? '0.015' : '0.018'};
+${CENTRAL ? `    float gfx = liquidField(uv+vec2(e2,0.), T, drag) - liquidField(uv-vec2(e2,0.), T, drag);
+    float gfy = liquidField(uv+vec2(0.,e2), T, drag) - liquidField(uv-vec2(0.,e2), T, drag);`
+             : `    float gfx = liquidField(uv+vec2(e2,0.), T, drag) - f0;
+    float gfy = liquidField(uv+vec2(0.,e2), T, drag) - f0;`}
     vec2  nGrad = vec2(gfx, gfy);
     float nGLen = length(nGrad);
     vec2  nxy   = (nGLen > 0.001) ? nGrad/nGLen : vec2(0.0);
@@ -167,13 +177,14 @@ export const FS = `
     vec3  tp = tN * 0.85;
     float f  = slime(tp, T);
 
-    float e  = .012;
+${DO_BUMP ? `    float e  = .012;
     float bx = slime(tp+vec3(e,0,0),T) - f;
     float by = slime(tp+vec3(0,e,0),T) - f;
     float bz = slime(tp+vec3(0,0,e),T) - f;
     vec3 bump = Ry(-ry)*Rx(-rx)*vec3(bx,by,bz);
     float bumpAmp = (0.82 + min(dMag * 4.5, 0.85)) * clamp(depth * 3.0, 0.05, 1.0) * smoothstep(0.0, 0.04, f0);
-    vec3 pN = normalize(N + bumpAmp * bump);
+    vec3 pN = normalize(N + bumpAmp * bump);`
+           : `    vec3 pN = N;`}
 
     vec3 L = normalize(vec3(u_mouse.x*1.6-.3, -u_mouse.y*1.4+.6, 1.5));
     vec3 V = vec3(0,0,1);
@@ -186,9 +197,10 @@ export const FS = `
     float fres  = pow(1.-NdotV, 4.2);
     float ridgeMask = smoothstep(.35, .72, f);
 
-    vec3  refDir  = reflect(vec3(0,0,-1), pN);
+${DO_CAUSTIC ? `    vec3  refDir  = reflect(vec3(0,0,-1), pN);
     float caustic = slime(tN*1.8 + refDir*.3 + vec3(T*.22), T*.6);
-    caustic = pow(max(caustic,0.), 4.0);
+    caustic = pow(max(caustic,0.), 4.0);`
+             : `    float caustic = 0.0;`}
 
     // Color: purple (sel=0) vs sky blue (sel=1)
     vec3 cValley = mix(vec3(.02,.005,.09),   vec3(.005,.05,.12),  sel);
@@ -218,3 +230,7 @@ export const FS = `
     gl_FragColor = vec4(col*alpha, alpha);
   }
 `;
+}
+
+// Backward compat — default to high quality (will be overridden by auto-detect)
+export const FS = makeFS(2);
