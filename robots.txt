@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /dist/
+Disallow: /src/
+
+Sitemap: https://jozefanyalai.com/sitemap.xml

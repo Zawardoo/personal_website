@@ -19,7 +19,11 @@
       "Bash(cd /d C:\\\\Users\\\\speed\\\\Documents\\\\moj_web)",
       "Bash(node build.js)",
       "Bash(npm uninstall *)",
-      "Bash(npm install *)"
+      "Bash(npm install *)",
+      "Bash(where magick *)",
+      "Bash(where convert *)",
+      "Bash(where inkscape *)",
+      "Bash(where chrome *)"
     ]
   }
 }
