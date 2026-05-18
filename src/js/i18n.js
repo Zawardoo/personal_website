@@ -5,7 +5,7 @@
 const SK = {
   // ---- Splash ----
   'splash.eyebrow':     'QA Automatizácia · Web Development',
-  'splash.sub':         'Inžinier zo Slovenska. Staviam testovacie súpravy, ktoré chytia bugy, a weby, ktoré žiadne nemajú.',
+  'splash.sub':         'Vývojár zo Slovenska. Staviam testovacie súpravy, ktoré chytia bugy, a weby, ktoré žiadne nemajú.',
   'splash.question':    'Čo hľadáte?',
   'splash.testing.title': 'Potrebujete spoľahlivú automatizáciu testov?',
   'splash.testing.desc':  'QA automatizácia, end-to-end testy, CI/CD pipelines a infraštruktúra, ktorá udržiava fintech spoľahlivým.',
@@ -23,10 +23,10 @@ const SK = {
 
   // ---- Testing Hero ----
   'test.hero.tag':      'QA · DEV · OPS',
-  'test.hero.tagline':  'Test automation inžinier zo Slovenska',
+  'test.hero.tagline':  'Test automation vývojár zo Slovenska',
   'test.hero.title1':   'Spoľahlivý softvér,',
   'test.hero.title2':   'testovaný end-to-end.',
-  'test.hero.sub':      'Som Jozef — QA automation inžinier v 365.bank s 3+ rokmi vo fintechusu. Navrhujem automatizačné frameworky v Pythone, staviam CI/CD pipelines v Jenkins a spustam záťažové testy, ktoré udržiavajú bankové systémy spoľahlivé.',
+  'test.hero.sub':      'Som Jozef — QA automation vývojár v 365.bank s 3+ rokmi vo fintechusu. Navrhujem automatizačné frameworky v Pythone, staviam CI/CD pipelines v Jenkins a spustam záťažové testy, ktoré udržiavajú bankové systémy spoľahlivé.',
   'test.hero.cv':       'Stiahnuť CV',
   'test.hero.contact':  'Napíšte mi',
 
@@ -138,6 +138,14 @@ const SK = {
   'wd.feat.app.desc':   'Webové aplikácie s autentifikáciou, databázami a API. Postavené s Python, FastAPI, PostgreSQL a Supabase.',
   'wd.feat.host.title': 'Hosting & Údržba',
   'wd.feat.host.desc':  'Deployment na Docker alebo Linux VPS, nastavenie domény, SSL, monitoring dostupnosti a priebežné aktualizácie.',
+
+  // Webdev Portfolio
+  'wd.portfolio.pill':   'Práca',
+  'wd.portfolio.title1': 'Nedávne ',
+  'wd.portfolio.title2': 'projekty.',
+  'wd.portfolio.sub':    'Výber webov a aplikácií, ktoré som postavil pre klientov a vedľajšie projekty.',
+  'wd.portfolio.p1.title': 'Toto portfólio',
+  'wd.portfolio.p1.desc':  'Portfólio na mieru s WebGL tekutými sklenenými guľami, dual-view routingom a EN/SK jazykovou podporou.',
 
   // Webdev Stack
   'wd.stack.pill':   'Stack',
