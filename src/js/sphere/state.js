@@ -4,6 +4,20 @@
 
 export const SPHERE_R = 0.34;
 
+// Cached viewport dimensions — updated on resize, avoids forced reflow
+let vw = window.innerWidth;
+let vh = window.innerHeight;
+let vMin = Math.min(vw, vh);
+
+export function updateViewport() {
+  vw = window.innerWidth;
+  vh = window.innerHeight;
+  vMin = Math.min(vw, vh);
+}
+
+// Update once on resize (resize already forces layout, so reading here is free)
+window.addEventListener('resize', updateViewport);
+
 export const VIEWS = {
   splash:  { s1: { x: -0.46, y: 0.08 }, s2: { x: 0.46, y: 0.08 }, s1o: 0, s2o: 0 },
   testing: { s1: { x:  0.20, y: 0    }, s2: { x: 0.90, y: 0    }, s1o: 1, s2o: 0 },
@@ -45,9 +59,8 @@ export function lerpSphere(s, dragging) {
 }
 
 export function getHitSphere(s1, s2, clientX, clientY) {
-  const minDim = Math.min(innerWidth, innerHeight);
-  const uvX = (clientX - innerWidth  * 0.5) / minDim;
-  const uvY = -(clientY - innerHeight * 0.5) / minDim;
+  const uvX = (clientX - vw * 0.5) / vMin;
+  const uvY = -(clientY - vh * 0.5) / vMin;
   const d1 = Math.sqrt((uvX - s1.pos.x) ** 2 + (uvY - s1.pos.y) ** 2);
   const d2 = Math.sqrt((uvX - s2.pos.x) ** 2 + (uvY - s2.pos.y) ** 2);
   const hitR = SPHERE_R + 0.12;
@@ -58,9 +71,8 @@ export function getHitSphere(s1, s2, clientX, clientY) {
 }
 
 export function pickActive(s1, s2, clientX, clientY) {
-  const minDim = Math.min(innerWidth, innerHeight);
-  const uvX = (clientX - innerWidth  * 0.5) / minDim;
-  const uvY = -(clientY - innerHeight * 0.5) / minDim;
+  const uvX = (clientX - vw * 0.5) / vMin;
+  const uvY = -(clientY - vh * 0.5) / vMin;
   const d1 = Math.sqrt((uvX - s1.pos.x) ** 2 + (uvY - s1.pos.y) ** 2);
   const d2 = Math.sqrt((uvX - s2.pos.x) ** 2 + (uvY - s2.pos.y) ** 2);
 
@@ -72,17 +84,15 @@ export function pickActive(s1, s2, clientX, clientY) {
 }
 
 export function updateCursorFor(s, clientX, clientY) {
-  const minDim = Math.min(innerWidth, innerHeight);
-  s.csr.tx = (clientX - innerWidth  * 0.5) / minDim - s.pos.x;
-  s.csr.ty = -(clientY - innerHeight * 0.5) / minDim - s.pos.y;
+  s.csr.tx = (clientX - vw * 0.5) / vMin - s.pos.x;
+  s.csr.ty = -(clientY - vh * 0.5) / vMin - s.pos.y;
   const dist = Math.sqrt(s.csr.tx * s.csr.tx + s.csr.ty * s.csr.ty);
   s.csr.fTarget = Math.max(0, 1 - dist / SPHERE_R);
 }
 
 export function accDrag(s, dx, dy) {
-  const minDim = Math.min(innerWidth, innerHeight);
-  s.dragUV.vx +=  dx / minDim;
-  s.dragUV.vy += -dy / minDim;
+  s.dragUV.vx +=  dx / vMin;
+  s.dragUV.vy += -dy / vMin;
   s.rot.vx -= dx * 0.00018;
   s.rot.vy -= dy * 0.00018;
 }

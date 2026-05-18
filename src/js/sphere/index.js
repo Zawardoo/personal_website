@@ -6,6 +6,7 @@ import { VS, makeFS } from './shaders.js';
 import {
   VIEWS, makeSphere, lerpSphere,
   getHitSphere, pickActive, updateCursorFor, accDrag,
+  updateViewport,
 } from './state.js';
 
 // ---- Quality tier detection ----
@@ -105,11 +106,17 @@ export function initSphere() {
    'u_s2_pos','u_s2_opacity','u_rot2','u_cpos2','u_cforce2','u_drag2',
   ].forEach(name => { u[name] = gl.getUniformLocation(prog, name); });
 
-  // ---- Resize ----
+  // ---- Cached viewport (avoids forced reflow on every frame/event) ----
+  let cachedW = window.innerWidth;
+  let cachedH = window.innerHeight;
+
   function resize() {
+    cachedW = window.innerWidth;
+    cachedH = window.innerHeight;
+    updateViewport();  // sync state.js cache too
     const dpr = Math.min(window.devicePixelRatio || 1, dprCap);
-    canvas.width  = Math.round(window.innerWidth  * dpr);
-    canvas.height = Math.round(window.innerHeight * dpr);
+    canvas.width  = Math.round(cachedW * dpr);
+    canvas.height = Math.round(cachedH * dpr);
     gl.viewport(0, 0, canvas.width, canvas.height);
   }
   resize();
@@ -137,8 +144,8 @@ export function initSphere() {
 
   // ---- Input: Mouse ----
   document.addEventListener('mousemove', e => {
-    mouse.tx = (e.clientX / innerWidth  - 0.5) * 2;
-    mouse.ty = (e.clientY / innerHeight - 0.5) * 2;
+    mouse.tx = (e.clientX / cachedW - 0.5) * 2;
+    mouse.ty = (e.clientY / cachedH - 0.5) * 2;
     activeSphere = pickActive(s1, s2, e.clientX, e.clientY);
     if (activeSphere) updateCursorFor(activeSphere, e.clientX, e.clientY);
     if (dragging && activeSphere) accDrag(activeSphere, e.clientX - dX, e.clientY - dY);
@@ -175,8 +182,8 @@ export function initSphere() {
 
   window.addEventListener('touchmove', e => {
     const t = e.touches[0]; if (!t) return;
-    mouse.tx = (t.clientX / innerWidth  - 0.5) * 2;
-    mouse.ty = (t.clientY / innerHeight - 0.5) * 2;
+    mouse.tx = (t.clientX / cachedW - 0.5) * 2;
+    mouse.ty = (t.clientY / cachedH - 0.5) * 2;
     activeSphere = pickActive(s1, s2, t.clientX, t.clientY);
     if (activeSphere) {
       updateCursorFor(activeSphere, t.clientX, t.clientY);
