@@ -140,6 +140,7 @@ export function initSphere() {
     s2.pos.tx = v.s2.x;  s2.pos.ty = v.s2.y;  s2.opacity.t = v.s2o;
     canvas.style.pointerEvents = view === 'splash' ? 'auto' : 'none';
     canvas.style.cursor = view === 'splash' ? 'pointer' : 'default';
+    startLoop();  // wake up render loop on view change
   }
 
   // ---- Input: Mouse ----
@@ -235,11 +236,34 @@ export function initSphere() {
     }
   }
 
-  // ---- Render loop ----
+  // ---- Render loop (pauses when hidden / idle) ----
   const t0 = performance.now();
+  let loopId = 0;
+  let loopRunning = false;
+  let idleFrames = 0;          // count frames where both spheres invisible
+  const IDLE_STOP = 30;        // stop loop after 30 idle frames (~0.5s)
+
+  function startLoop() {
+    if (loopRunning) return;
+    loopRunning = true;
+    idleFrames = 0;
+    loopId = requestAnimationFrame(draw);
+  }
+
+  function stopLoop() {
+    if (!loopRunning) return;
+    loopRunning = false;
+    cancelAnimationFrame(loopId);
+  }
+
+  // Pause when tab hidden, resume when visible
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) stopLoop(); else startLoop();
+  });
 
   function draw(now) {
-    requestAnimationFrame(draw);
+    if (!loopRunning) return;
+    loopId = requestAnimationFrame(draw);
 
     checkAdaptive(now);
 
@@ -252,12 +276,15 @@ export function initSphere() {
     lerpSphere(s1, dragging);
     lerpSphere(s2, dragging);
 
-    // Skip GPU work when both invisible
+    // Skip GPU work when both invisible — stop loop if idle too long
     if (s1.opacity.v < 0.01 && s2.opacity.v < 0.01) {
+      idleFrames++;
+      if (idleFrames > IDLE_STOP) { stopLoop(); return; }
       gl.clearColor(0, 0, 0, 0);
       gl.clear(gl.COLOR_BUFFER_BIT);
       return;
     }
+    idleFrames = 0;
 
     gl.clearColor(0, 0, 0, 0);
     gl.clear(gl.COLOR_BUFFER_BIT);
@@ -282,7 +309,7 @@ export function initSphere() {
 
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
   }
-  draw(performance.now());
+  startLoop();
 
   // ---- Public API ----
   window.sphereCtrl = { setState, getHitSphere: (cx, cy) => getHitSphere(s1, s2, cx, cy) };

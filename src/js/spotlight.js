@@ -6,22 +6,27 @@ export function initSpotlight() {
   const cards = document.querySelectorAll('.feature, .skill-card');
   if (!cards.length) return;
 
-  // Cache bounding rects — update on resize/scroll instead of every mousemove
+  // Cache bounding rects — update on resize only (not scroll, to avoid reflow)
   const rects = new WeakMap();
+  let rectsStale = true;
 
-  function cacheRects() {
+  function markStale() { rectsStale = true; }
+
+  function refreshRects() {
     cards.forEach(card => { rects.set(card, card.getBoundingClientRect()); });
+    rectsStale = false;
   }
 
-  cacheRects();
-  window.addEventListener('resize', cacheRects);
-  window.addEventListener('scroll', cacheRects, { passive: true });
+  // Only invalidate on resize; refresh lazily on next mousemove
+  window.addEventListener('resize', markStale);
+  window.addEventListener('scroll', markStale, { passive: true });
 
   cards.forEach(card => {
     card.addEventListener('mousemove', e => {
-      let r = rects.get(card);
-      // Fallback if rect not cached yet
-      if (!r) { r = card.getBoundingClientRect(); rects.set(card, r); }
+      // Refresh all rects once when stale (batched, not per-card)
+      if (rectsStale) refreshRects();
+      const r = rects.get(card);
+      if (!r) return;
       card.style.setProperty('--mx', ((e.clientX - r.left) / r.width)  * 100 + '%');
       card.style.setProperty('--my', ((e.clientY - r.top)  / r.height) * 100 + '%');
     });

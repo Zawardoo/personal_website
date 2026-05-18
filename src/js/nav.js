@@ -19,10 +19,16 @@ function closeMobileMenu() {
 export function initNav() {
   const nav = document.getElementById('navbar');
 
-  // Scroll → add "scrolled" class
+  // Scroll → add "scrolled" class (rAF-batched to avoid forced reflow)
+  let scrollTicking = false;
   window.addEventListener('scroll', () => {
-    if (nav) nav.classList.toggle('scrolled', window.scrollY > 24);
-  });
+    if (scrollTicking) return;
+    scrollTicking = true;
+    requestAnimationFrame(() => {
+      if (nav) nav.classList.toggle('scrolled', window.scrollY > 24);
+      scrollTicking = false;
+    });
+  }, { passive: true });
 
   // View-aware nav links
   document.querySelectorAll('[data-nav]').forEach(link => {

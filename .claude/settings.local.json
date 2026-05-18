@@ -23,7 +23,9 @@
       "Bash(where magick *)",
       "Bash(where convert *)",
       "Bash(where inkscape *)",
-      "Bash(where chrome *)"
+      "Bash(where chrome *)",
+      "Bash(not exist *)",
+      "PowerShell(New-Item -ItemType Directory -Path \"D:\\\\WEBY\\\\MS-detailing\" -Force)"
     ]
   }
 }
