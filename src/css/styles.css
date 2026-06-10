@@ -479,33 +479,17 @@ h1.hero-title .gradient {
   min-height: 520px;
   display: grid;
   place-items: center;
-  overflow: visible;
+  overflow: hidden;
 }
 @media (max-width: 900px) { .hero-stage-wrap { min-height: 360px; margin-bottom: 0; } }
 @media (max-width: 540px) { .hero-stage-wrap { min-height: 260px; } }
 
-/* Invisible drag zone — captures mousedown for sphere interaction */
-.sphere {
-  position: absolute;
-  inset: 0;
-  cursor: grab;
-  touch-action: none;
-}
 
 @keyframes haloPulse {
   0%, 100% { opacity: 0.7; transform: scale(1); }
   50%      { opacity: 1;   transform: scale(1.06); }
 }
 
-/* Canvas is a full-page fixed background layer (z-index: 0) */
-#sphereCanvas {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  pointer-events: none;
-}
 
 /* ---------- FLOATING INFO TAGS ---------- */
 .sphere-tags {
@@ -928,26 +912,182 @@ section.block { position: relative; padding: 120px 32px; z-index: 1; }
 }
 .channel-text strong { display: block; font-size: 11px; color: var(--text-dim); font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 2px; font-weight: 500; }
 .channel-text span { font-size: 14.5px; color: var(--text); }
-form.contact-form {
-  background: linear-gradient(180deg, rgba(22,16,38,0.6), rgba(14,10,28,0.8));
+/* --- Glassmorphism Form --- */
+.glass-form {
+  position: relative;
+  background: rgba(15, 10, 30, 0.45);
+  backdrop-filter: blur(24px) saturate(130%);
+  -webkit-backdrop-filter: blur(24px) saturate(130%);
   border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 32px;
-  backdrop-filter: blur(16px);
+  border-radius: 24px;
+  padding: 36px;
 }
-.fg { margin-bottom: 18px; }
-.fg label { display: block; font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-dim); margin-bottom: 8px; font-weight: 500; }
-.fg label .req { color: var(--accent-3); }
-.fg input, .fg textarea { width: 100%; padding: 12px 14px; background: rgba(7,6,13,0.6); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-family: var(--font); font-size: 14.5px; transition: all 0.2s; resize: none; }
-.fg input:focus, .fg textarea:focus { outline: none; border-color: var(--accent); background: rgba(7,6,13,0.85); box-shadow: 0 0 0 4px rgba(139,92,246,0.12); }
-.fg textarea { min-height: 130px; }
-.fg input.invalid, .fg textarea.invalid { border-color: #ef4444; }
-.fg .err { font-family: var(--mono); font-size: 11px; color: #f87171; margin-top: 6px; height: 14px; opacity: 0; transition: opacity 0.2s; }
-.fg .err.show { opacity: 1; }
-.fg-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.submit { width: 100%; justify-content: center; margin-top: 6px; }
-.ok-msg { display: none; padding: 12px 14px; background: rgba(74,222,128,0.08); border: 1px solid rgba(74,222,128,0.3); border-radius: 10px; color: #86EFAC; font-size: 13px; margin-top: 14px; align-items: center; gap: 10px; }
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .glass-form { background: rgba(15, 10, 30, 0.92); }
+}
+.glass-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* --- Glass Field --- */
+.glass-field {
+  position: relative;
+  margin-bottom: 22px;
+}
+/* Focus light — ambient glow behind active field */
+.glass-field::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 20px;
+  background: radial-gradient(ellipse at center, var(--accent-glow), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+.glass-field:focus-within::before {
+  opacity: 0.15;
+}
+.glass-field input,
+.glass-field textarea {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 26px 16px 10px 20px;
+  background: rgba(7, 6, 13, 0.35);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--border-strong);
+  border-radius: 12px;
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 15px;
+  transition: border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+  outline: none;
+  resize: none;
+}
+.glass-field textarea {
+  min-height: 140px;
+  padding-top: 30px;
+}
+.glass-field input:hover,
+.glass-field textarea:hover {
+  border-color: var(--border-strong);
+}
+.glass-field input:focus,
+.glass-field textarea:focus {
+  border-left-color: var(--accent);
+  background: rgba(7, 6, 13, 0.55);
+  box-shadow: inset 3px 0 16px -6px var(--accent-glow);
+}
+
+/* Floating labels */
+.glass-field label {
+  position: absolute;
+  left: 20px;
+  top: 18px;
+  z-index: 2;
+  font-size: 14px;
+  color: var(--text-dim);
+  pointer-events: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: left center;
+}
+.glass-field label .req {
+  color: var(--accent-3);
+  transition: color 0.25s;
+}
+/* Label floats up on focus or when filled */
+.glass-field input:focus + label,
+.glass-field input:not(:placeholder-shown) + label,
+.glass-field textarea:focus + label,
+.glass-field textarea:not(:placeholder-shown) + label {
+  top: 7px;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: var(--mono);
+  color: var(--accent-3);
+  font-weight: 500;
+}
+
+/* Keyboard focus ring */
+.glass-field input:focus-visible,
+.glass-field textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Error states */
+@keyframes fieldShake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-3px); }
+  40% { transform: translateX(3px); }
+  60% { transform: translateX(-2px); }
+  80% { transform: translateX(2px); }
+}
+.glass-field input.invalid,
+.glass-field textarea.invalid {
+  border-color: rgba(239, 68, 68, 0.25);
+  border-left-color: #ef4444;
+  animation: fieldShake 0.35s ease;
+  box-shadow: inset 3px 0 16px -6px rgba(239, 68, 68, 0.2);
+}
+.glass-field input.invalid + label,
+.glass-field textarea.invalid + label {
+  color: #f87171;
+}
+.glass-field input.invalid + label .req,
+.glass-field textarea.invalid + label .req {
+  color: #f87171;
+}
+.glass-field .err {
+  position: relative;
+  z-index: 1;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: #f87171;
+  padding: 4px 0 0 20px;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: opacity 0.2s, height 0.2s;
+}
+.glass-field .err.show {
+  opacity: 1;
+  height: 20px;
+}
+
+/* Submit button */
+.glass-form .submit {
+  width: 100%;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+/* Success / error messages */
+.ok-msg {
+  display: none;
+  padding: 16px 20px;
+  background: rgba(74, 222, 128, 0.06);
+  border: 1px solid rgba(74, 222, 128, 0.12);
+  border-left: 2px solid #4ADE80;
+  border-radius: 12px;
+  color: #86EFAC;
+  font-size: 14px;
+  margin-top: 16px;
+  align-items: center;
+  gap: 10px;
+}
 .ok-msg.show { display: flex; }
+.ok-msg.error {
+  background: rgba(239, 68, 68, 0.06);
+  border-color: rgba(239, 68, 68, 0.12);
+  border-left-color: #ef4444;
+  color: #fca5a5;
+}
 
 /* ---------- FOOTER ---------- */
 footer { padding: 32px; border-top: 1px solid var(--border); background: var(--bg-0); position: relative; z-index: 1; }
@@ -976,8 +1116,8 @@ footer { padding: 32px; border-top: 1px solid var(--border); background: var(--b
 @media (max-width: 540px) {
   .feature-grid { grid-template-columns: 1fr; }
   .feature.big { grid-column: auto; }
-  .fg-row { grid-template-columns: 1fr; }
-  form.contact-form { padding: 24px; }
+  .glass-row { grid-template-columns: 1fr; }
+  .glass-form { padding: 24px; border-radius: 20px; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -991,16 +1131,14 @@ footer { padding: 32px; border-top: 1px solid var(--border); background: var(--b
    ============================================================= */
 
 .splash {
-  position: fixed;
-  inset: 0;
+  position: relative;
+  min-height: 100vh;
   z-index: 10;
   display: flex;
   align-items: safe center;
   justify-content: center;
   overflow-y: auto;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.5s ease;
+  padding: 24px;
 }
 .splash-inner {
   position: relative;
@@ -1158,37 +1296,12 @@ footer { padding: 32px; border-top: 1px solid var(--border); background: var(--b
 .splash-sep { color: var(--text-dim); opacity: 0.4; }
 
 /* =============================================================
-   VIEW STATE — visibility control
+   PAGE STATE — per-page visibility (multi-page, no JS switching)
    ============================================================= */
 
-/* All content hidden by default; views fade in */
-.view-content {
-  display: none;
-  opacity: 0;
-  transition: opacity 0.45s ease 0.25s;
-}
-
-/* --- Splash mode --- */
-body.view-splash .splash { opacity: 1; pointer-events: auto; }
-body.view-splash nav { opacity: 0; pointer-events: none; }
-body.view-splash .view-content { display: none; opacity: 0; }
-body.view-splash footer { display: none; }
-
-/* --- Testing mode (purple) --- */
-body.view-testing #view-testing { display: block; opacity: 1; }
-body.view-testing .splash { opacity: 0; pointer-events: none; }
-body.view-testing nav { opacity: 1; pointer-events: auto; }
-body.view-testing footer { display: block; }
-
-/* --- Webdev mode (blue) --- */
-body.view-webdev #view-webdev { display: block; opacity: 1; }
-body.view-webdev .splash { opacity: 0; pointer-events: none; }
-body.view-webdev nav { opacity: 1; pointer-events: auto; }
-body.view-webdev footer { display: block; }
-
-/* Back button in nav */
+/* Back button in nav — visible on service pages */
 .back-btn {
-  display: none;
+  display: inline-flex;
   align-items: center;
   gap: 6px;
   padding: 8px 14px;
@@ -1204,14 +1317,12 @@ body.view-webdev footer { display: block; }
   margin-right: 8px;
 }
 .back-btn:hover { color: var(--text); border-color: var(--border-strong); background: rgba(139,92,246,0.06); }
-body.view-testing .back-btn,
-body.view-webdev .back-btn { display: inline-flex; }
 
 /* =============================================================
    BLUE THEME — override design tokens for webdev view
    ============================================================= */
 
-body.view-webdev {
+body[data-page="webdev"] {
   --accent: #38BDF8;
   --accent-2: #0EA5E9;
   --accent-3: #7DD3FC;
@@ -1219,49 +1330,49 @@ body.view-webdev {
   --border: rgba(56, 189, 248, 0.13);
   --border-strong: rgba(14, 165, 233, 0.28);
 }
-body.view-webdev .gradient {
+body[data-page="webdev"] .gradient {
   background: linear-gradient(135deg, #7DD3FC, #38BDF8, #0EA5E9);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-body.view-webdev .hero-glow {
+body[data-page="webdev"] .hero-glow {
   background: radial-gradient(ellipse 55% 65% at 65% 40%, rgba(56,189,248,0.20), rgba(14,165,233,0.08) 50%, transparent 80%);
 }
-body.view-webdev .logo-mark {
+body[data-page="webdev"] .logo-mark {
   background: linear-gradient(135deg, #7DD3FC 0%, #38BDF8 60%, #0369A1 100%);
   box-shadow: 0 4px 14px rgba(56,189,248,0.5), inset 0 1px 0 rgba(255,255,255,0.25);
 }
-body.view-webdev .nav-cta {
+body[data-page="webdev"] .nav-cta {
   background: linear-gradient(135deg, #fff 0%, #DBEAFE 100%);
 }
-body.view-webdev .btn-primary {
+body[data-page="webdev"] .btn-primary {
   background: linear-gradient(135deg, #7DD3FC, #38BDF8);
   box-shadow: 0 8px 30px rgba(56,189,248,0.35), inset 0 1px 0 rgba(255,255,255,0.25);
 }
-body.view-webdev .btn-primary:hover {
+body[data-page="webdev"] .btn-primary:hover {
   box-shadow: 0 12px 40px rgba(56,189,248,0.45), inset 0 1px 0 rgba(255,255,255,0.25);
 }
-body.view-webdev .btn-ghost {
+body[data-page="webdev"] .btn-ghost {
   border-color: rgba(56,189,248,0.25);
 }
-body.view-webdev .btn-ghost:hover {
+body[data-page="webdev"] .btn-ghost:hover {
   background: rgba(56,189,248,0.06);
   border-color: rgba(56,189,248,0.45);
 }
-body.view-webdev .pill {
+body[data-page="webdev"] .pill {
   border-color: rgba(56,189,248,0.18);
 }
-body.view-webdev .dot {
+body[data-page="webdev"] .dot {
   background: #38BDF8;
   box-shadow: 0 0 8px #38BDF8;
 }
-body.view-webdev .portfolio-tags span {
+body[data-page="webdev"] .portfolio-tags span {
   background: rgba(56,189,248,0.08);
   color: #7DD3FC;
   border-color: rgba(56,189,248,0.12);
 }
-body.view-webdev .portfolio-item:hover {
+body[data-page="webdev"] .portfolio-item:hover {
   box-shadow: 0 12px 40px -12px rgba(56,189,248,0.25);
 }
 
@@ -1306,7 +1417,7 @@ body.view-webdev .portfolio-item:hover {
   color: var(--text);
   box-shadow: 0 0 8px rgba(139,92,246,0.15);
 }
-body.view-webdev .lang-toggle span.active {
+body[data-page="webdev"] .lang-toggle span.active {
   background: rgba(56,189,248,0.18);
   box-shadow: 0 0 8px rgba(56,189,248,0.15);
 }
@@ -1342,7 +1453,7 @@ body.view-webdev .lang-toggle span.active {
   .skill-card { padding: 20px; border-radius: 16px; }
   .skill-grid { grid-template-columns: 1fr; }
   .contact-grid { gap: 24px; }
-  form.contact-form { padding: 20px; border-radius: 16px; }
+  .glass-form { padding: 20px; border-radius: 16px; }
   .channel { padding: 14px; border-radius: 12px; }
   footer { padding: 24px 16px; }
   .foot-inner { flex-direction: column; gap: 12px; text-align: center; }

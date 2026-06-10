@@ -6,6 +6,13 @@
       "runtimeExecutable": "npx",
       "runtimeArgs": ["-y", "http-server", "-p", "8091", "-c-1"],
       "port": 8091
+    },
+    {
+      "name": "ms-detailing",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "D:\\WEBY\\MS-detailing", "run", "dev"],
+      "port": 3000,
+      "autoPort": true
     }
   ]
 }

@@ -32,6 +32,8 @@
   ],
   "rewrites": [
     { "source": "/api/contact", "destination": "/api/contact" },
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/qa-automatizacia", "destination": "/qa-automatizacia.html" },
+    { "source": "/tvorba-webov", "destination": "/tvorba-webov.html" },
+    { "source": "/", "destination": "/index.html" }
   ]
 }

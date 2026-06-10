@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ====== SEO ====== -->
+<title>Tvorba webových stránok na mieru — Jozef Anyalai | WebGL, Full-Stack, Figma | Slovensko</title>
+<meta name="description" content="Tvorba webových stránok na mieru na Slovensku. Ručne kódované weby bez šablón, vizuálna identita, Figma prototypy, WebGL efekty, full-stack aplikácie. Od dizajnu po hosting.">
+<meta name="keywords" content="tvorba webových stránok, webové stránky na mieru, web developer slovensko, tvorba webov, webový vývojár, programátor webov, webové aplikácie, web na mieru, vývojár webových stránok, tvorba web stránok, freelance web developer, webdizajn, tvorba eshopu, moderné weby, kódovanie webov, webové služby slovensko, full-stack developer, figma dizajn, webgl, interaktívne weby, branding, vizuálna identita, responsive web, fastapi, postgresql">
+<meta name="author" content="Jozef Anyalai">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<link rel="canonical" href="https://jozefanyalai.com/tvorba-webov">
+<meta name="geo.region" content="SK">
+<meta name="geo.placename" content="Slovakia">
+
+<!-- ====== Open Graph ====== -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tvorba webov na mieru — Jozef Anyalai | Slovensko">
+<meta property="og:description" content="Ručne kódované weby bez šablón. Vizuálna identita, Figma prototypy, WebGL efekty, full-stack aplikácie. Od dizajnu po hosting.">
+<meta property="og:url" content="https://jozefanyalai.com/tvorba-webov">
+<meta property="og:site_name" content="Jozef Anyalai">
+<meta property="og:locale" content="sk_SK">
+<meta property="og:image" content="https://jozefanyalai.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- ====== Twitter Card ====== -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tvorba webov na mieru — Jozef Anyalai">
+<meta name="twitter:description" content="Ručne kódované weby bez šablón. Webový vývojár zo Slovenska.">
+<meta name="twitter:image" content="https://jozefanyalai.com/og-image.png">
+
+<!-- ====== JSON-LD ====== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "Tvorba webových stránok na mieru",
+      "description": "Ručne kódované weby bez šablón, vizuálna identita a branding, Figma prototypy, WebGL interaktívne efekty, full-stack webové aplikácie, hosting a údržba.",
+      "provider": { "@id": "https://jozefanyalai.com/#person" },
+      "areaServed": [
+        { "@type": "Country", "name": "Slovakia" },
+        { "@type": "Country", "name": "Czech Republic" },
+        { "@type": "Place", "name": "Europe" }
+      ],
+      "serviceType": ["Tvorba webových stránok", "Web Development", "Brand Identity", "WebGL Development", "Full-stack Applications", "UI/UX Design"]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://jozefanyalai.com/#person",
+      "name": "Jozef Anyalai",
+      "url": "https://jozefanyalai.com/",
+      "email": "hello@jozefanyalai.com",
+      "jobTitle": "Web Developer",
+      "sameAs": ["https://www.linkedin.com/in/jozef-anyalai/", "https://github.com/jozefanyalai"]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Domov", "item": "https://jozefanyalai.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Tvorba webov", "item": "https://jozefanyalai.com/tvorba-webov" }
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- ====== Favicon ====== -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+<!-- ====== Critical CSS ====== -->
+<style>
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+:root{--bg-0:#07060d;--bg-1:#0c0a16;--surface:rgba(22,16,38,.55);--border:rgba(56,189,248,.13);--border-strong:rgba(14,165,233,.28);--text:#ECE6F7;--text-muted:#A89DC4;--text-dim:#6F6488;--accent:#38BDF8;--accent-2:#0EA5E9;--accent-3:#7DD3FC;--accent-glow:rgba(56,189,248,.45);--font:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:var(--font);background:var(--bg-0);color:var(--text);line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+::selection{background:var(--accent);color:#fff}
+a{color:inherit}
+nav{position:fixed;top:16px;left:16px;right:16px;z-index:100}
+.bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none}
+</style>
+
+<!-- ====== Fonts ====== -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"></noscript>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+
+<!-- ====== Main CSS ====== -->
+<link rel="preload" as="style" href="/dist/css/styles.min.css?v=6">
+<link rel="stylesheet" href="/dist/css/styles.min.css?v=6" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/dist/css/styles.min.css?v=6"></noscript>
+
+</head>
+<body data-page="webdev">
+
+<div class="bg-grid"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-bar">
+    <a href="/" class="back-btn" title="Back to home">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      <span data-i18n="nav.home">Home</span>
+    </a>
+    <a href="/" class="logo">
+      <span class="logo-mark">JA</span>
+      <span>Jozef Anyalai</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#" data-nav="about" data-i18n="nav.about">About</a></li>
+      <li><a href="#" data-nav="skills" data-i18n="nav.skills">Skills</a></li>
+      <li><a href="#" data-nav="contact" data-i18n="nav.contact">Contact</a></li>
+    </ul>
+    <a href="#" class="nav-cta" data-nav="contact">
+      <span data-i18n="nav.cta">Get in touch</span>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+    <button class="burger" id="burgerBtn" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-drawer" id="navDrawer">
+    <ul class="nav-links">
+      <li><a href="#" data-nav="about" data-i18n="nav.about">About</a></li>
+      <li><a href="#" data-nav="skills" data-i18n="nav.skills">Skills</a></li>
+      <li><a href="#" data-nav="contact" data-i18n="nav.contact">Contact</a></li>
+      <li class="mobile-lang-item"></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-pill reveal">
+        <span class="tag" data-i18n="wd.hero.tag">DESIGN &middot; CODE &middot; SHIP</span>
+        <span data-i18n="wd.hero.tagline">Full-stack web development</span>
+        <span class="arrow">&rarr;</span>
+      </div>
+      <h1 class="hero-title reveal d1">
+        <span data-i18n="wd.hero.title1">Custom websites,</span><br>
+        <span class="gradient" data-i18n="wd.hero.title2">built from scratch.</span>
+      </h1>
+      <p class="hero-sub reveal d2" data-i18n="wd.hero.sub">
+        No templates. No page builders. I design your brand identity, prototype in Figma, and hand-code every pixel — from interactive WebGL experiences to full-stack apps with backends and APIs.
+      </p>
+      <div class="hero-cta-row reveal d3">
+        <a href="#contact" class="btn btn-primary"><span data-i18n="wd.hero.cta">Start a project</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        <a href="#services" class="btn btn-ghost"><span data-i18n="wd.hero.services">See services</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg></a>
+      </div>
+    </div>
+    <div class="hero-stage-wrap reveal d4">
+      <div class="sphere-tags">
+        <div class="ftag"><div class="ftag-ico"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div><div class="ftag-label" data-i18n="wd.ftag1.label">Code</div><div class="ftag-value" data-i18n="wd.ftag1.value">HTML &middot; CSS &middot; JS</div></div></div>
+        <div class="ftag"><div class="ftag-ico"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></div><div><div class="ftag-label" data-i18n="wd.ftag2.label">Branding</div><div class="ftag-value" data-i18n="wd.ftag2.value">Figma &middot; Identity</div></div></div>
+        <div class="ftag"><div class="ftag-ico"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div><div><div class="ftag-label" data-i18n="wd.ftag3.label">Graphics</div><div class="ftag-value" data-i18n="wd.ftag3.value">WebGL &middot; GLSL</div></div></div>
+        <div class="ftag"><div class="ftag-ico"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><div class="ftag-label" data-i18n="wd.ftag4.label">Backend</div><div class="ftag-value" data-i18n="wd.ftag4.value">FastAPI &middot; PostgreSQL</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="block about" id="services">
+  <div class="container">
+    <div class="block-head">
+      <div class="pill reveal"><span class="dot"></span><span data-i18n="wd.svc.pill">Services</span></div>
+      <h2 class="block-title reveal d1"><span data-i18n="wd.svc.title1">Everything you need, </span><span class="gradient" data-i18n="wd.svc.title2">nothing you don't.</span></h2>
+      <p class="block-sub reveal d2" data-i18n="wd.svc.sub">From branding and Figma prototypes to hand-coded sites and full-stack apps — I handle everything end to end.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature big reveal"><div class="feature-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></div><h3 data-i18n="wd.feat.brand.title">Brand Identity &amp; Design</h3><div class="bio"><p data-i18n="wd.feat.brand.p1"><strong>Your brand, designed from scratch.</strong> I create complete visual identities — logo, color palette, typography, and design system — before writing a single line of code.</p><p data-i18n="wd.feat.brand.p2">Everything starts in <strong>Figma</strong>: wireframes, high-fidelity mockups, interactive prototypes. You approve the design, then I build it pixel-perfect.</p><p data-i18n="wd.feat.brand.p3">Mobile-first, accessible, consistent across every screen. Your brand looks the same on a phone, tablet, or 4K monitor.</p></div></div>
+      <div class="feature reveal d1"><div class="feature-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></div><h3 data-i18n="wd.feat.web.title">Hand-Coded Websites</h3><p data-i18n="wd.feat.web.desc">No templates, no WordPress. Every site is written from a blank file with clean HTML, CSS, and JavaScript. Fast, unique, and fully yours.</p></div>
+      <div class="feature reveal d2"><div class="feature-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><h3 data-i18n="wd.feat.gl.title">Interactive WebGL</h3><p data-i18n="wd.feat.gl.desc">Custom shader effects, 3D visuals, and interactive animations using WebGL and GLSL. The kind of detail that makes a site memorable.</p></div>
+      <div class="feature reveal d2"><div class="feature-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><h3 data-i18n="wd.feat.app.title">Full-Stack Apps</h3><p data-i18n="wd.feat.app.desc">Web applications with auth, databases, and APIs. Built with Python, FastAPI, PostgreSQL, and Supabase.</p></div>
+      <div class="feature reveal d3"><div class="feature-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div><h3 data-i18n="wd.feat.host.title">Hosting &amp; Maintenance</h3><p data-i18n="wd.feat.host.desc">Deployment on Docker or Linux VPS, domain setup, SSL, uptime monitoring, and ongoing updates.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="block" id="portfolio">
+  <div class="block-head">
+    <span class="pill reveal"><span class="dot"></span><span data-i18n="wd.portfolio.pill">Work</span></span>
+    <h2 class="block-title reveal d1"><span data-i18n="wd.portfolio.title1">Recent </span><span class="gradient" data-i18n="wd.portfolio.title2">projects.</span></h2>
+    <p class="block-sub reveal d2" data-i18n="wd.portfolio.sub">A selection of websites and apps I've built for clients and side projects.</p>
+  </div>
+  <div class="portfolio-grid">
+    <a href="https://irsia-production.vercel.app/" target="_blank" rel="noopener" class="portfolio-item reveal">
+      <div class="portfolio-thumb"><img src="/porfolio/irsia-prod.jpg" alt="irsia-production – jedinečné portfólio pre fotografov" loading="lazy" width="662" height="662" decoding="async"></div>
+      <div class="portfolio-info"><h3>irsia-production</h3><p>Jedinečné portfólio pre fotografov</p><span class="portfolio-tags"><span>HTML</span><span>CSS</span><span>JS</span><span>Supabase</span></span></div>
+    </a>
+    <!-- === ADD NEW PROJECTS HERE === -->
+    <a href="https://jozefanyalai.com" target="_blank" rel="noopener" class="portfolio-item reveal">
+      <div class="portfolio-thumb"><div class="portfolio-placeholder">JA</div></div>
+      <div class="portfolio-info"><h3 data-i18n="wd.portfolio.p1.title">This Portfolio</h3><p data-i18n="wd.portfolio.p1.desc">Custom-built portfolio with WebGL liquid glass spheres, dual-view routing, and EN/SK language support.</p><span class="portfolio-tags"><span>WebGL</span><span>GLSL</span><span>JS</span><span>CSS</span></span></div>
+    </a>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section class="block skills" id="stack">
+  <div class="container">
+    <div class="block-head">
+      <div class="pill reveal"><span class="dot"></span><span data-i18n="wd.stack.pill">Stack</span></div>
+      <h2 class="block-title reveal d1"><span data-i18n="wd.stack.title1">Tools </span><span class="gradient" data-i18n="wd.stack.title2">&amp; tech.</span></h2>
+      <p class="block-sub reveal d2" data-i18n="wd.stack.sub">What I build with, grouped by layer.</p>
+    </div>
+    <div class="skill-grid">
+      <div class="skill-card reveal"><div class="skill-head"><div class="skill-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><span class="skill-name" data-i18n="wd.sk.front">Frontend</span><span class="skill-count">05</span></div><div class="skill-list"><span class="chip"><span class="dot"></span>HTML / CSS</span><span class="chip"><span class="dot"></span>JavaScript</span><span class="chip"><span class="dot"></span>WebGL / GLSL</span><span class="chip"><span class="dot"></span>CSS Custom Props</span><span class="chip"><span class="dot"></span>Responsive</span></div></div>
+      <div class="skill-card reveal d1"><div class="skill-head"><div class="skill-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></div><span class="skill-name" data-i18n="wd.sk.design">Design</span><span class="skill-count">04</span></div><div class="skill-list"><span class="chip"><span class="dot"></span>Figma</span><span class="chip"><span class="dot"></span>Brand Identity</span><span class="chip"><span class="dot"></span>UI / UX</span><span class="chip"><span class="dot"></span>Prototyping</span></div></div>
+      <div class="skill-card reveal d2"><div class="skill-head"><div class="skill-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div><span class="skill-name" data-i18n="wd.sk.back">Backend</span><span class="skill-count">03</span></div><div class="skill-list"><span class="chip"><span class="dot"></span>Python</span><span class="chip"><span class="dot"></span>FastAPI</span><span class="chip"><span class="dot"></span>REST APIs</span></div></div>
+      <div class="skill-card reveal d1"><div class="skill-head"><div class="skill-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div><span class="skill-name" data-i18n="wd.sk.data">Data &amp; Auth</span><span class="skill-count">03</span></div><div class="skill-list"><span class="chip"><span class="dot"></span>PostgreSQL</span><span class="chip"><span class="dot"></span>Supabase</span><span class="chip"><span class="dot"></span>OAuth / JWT</span></div></div>
+      <div class="skill-card reveal d2"><div class="skill-head"><div class="skill-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><span class="skill-name" data-i18n="wd.sk.deploy">Deploy</span><span class="skill-count">04</span></div><div class="skill-list"><span class="chip"><span class="dot"></span>Docker</span><span class="chip"><span class="dot"></span>Linux VPS</span><span class="chip"><span class="dot"></span>Vercel</span><span class="chip"><span class="dot"></span>SSL / DNS</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<section class="cta-strip">
+  <div class="cta-card reveal">
+    <h2 data-i18n="wd.cta.title">Have a project in mind?</h2>
+    <p data-i18n="wd.cta.sub">I take on a limited number of projects at a time to keep quality high. Let's talk about what you need.</p>
+    <div class="btn-row">
+      <a href="#contact" class="btn btn-primary"><span data-i18n="wd.cta.btn">Start a conversation</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="block contact" id="contact">
+  <div class="container">
+    <div class="block-head">
+      <div class="pill reveal"><span class="dot"></span><span data-i18n="wd.contact.pill">Contact</span></div>
+      <h2 class="block-title reveal d1"><span data-i18n="wd.contact.title1">Let's </span><span class="gradient" data-i18n="wd.contact.title2">build.</span></h2>
+      <p class="block-sub reveal d2" data-i18n="wd.contact.sub">Tell me about your project and I'll get back to you within 24 hours.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="channels">
+          <a href="mailto:hello@jozefanyalai.com" class="channel"><div class="channel-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="channel-text"><strong data-i18n="contact.email.label">Email</strong><span>hello@jozefanyalai.com</span></div></a>
+          <a href="https://www.linkedin.com/in/jozef-anyalai/" class="channel" target="_blank" rel="noopener"><div class="channel-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div><div class="channel-text"><strong data-i18n="contact.li.label">LinkedIn</strong><span>/in/jozefanyalai</span></div></a>
+          <a href="https://github.com/jozefanyalai" class="channel" target="_blank" rel="noopener"><div class="channel-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></div><div class="channel-text"><strong data-i18n="contact.gh.label">GitHub</strong><span>/jozefanyalai</span></div></a>
+        </div>
+      </div>
+      <form class="glass-form reveal d1" id="contactFormWd" novalidate>
+        <div class="glass-row">
+          <div class="glass-field">
+            <input type="text" id="name-wd" name="name" placeholder=" " autocomplete="name">
+            <label for="name-wd"><span data-i18n="form.name.label">Name</span> <span class="req">*</span></label>
+            <div class="err" id="err-name-wd" data-i18n="form.err.name">Please enter your name</div>
+          </div>
+          <div class="glass-field">
+            <input type="email" id="email-wd" name="email" placeholder=" " autocomplete="email">
+            <label for="email-wd"><span data-i18n="form.email.label">Email</span> <span class="req">*</span></label>
+            <div class="err" id="err-email-wd" data-i18n="form.err.email">Please enter a valid email</div>
+          </div>
+        </div>
+        <div class="glass-field">
+          <textarea id="message-wd" name="message" placeholder=" "></textarea>
+          <label for="message-wd"><span data-i18n="wd.form.msg.label">Project details</span> <span class="req">*</span></label>
+          <div class="err" id="err-message-wd" data-i18n="wd.form.err.msg">Please describe your project</div>
+        </div>
+        <button type="submit" class="btn btn-primary submit"><span id="submitTextWd" data-i18n="form.submit">Send message</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+        <div class="ok-msg" id="formSuccessWd"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="wd.form.ok">Message sent — I'll be in touch soon.</span></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <p>&copy; 2026 Jozef Anyalai</p>
+    <div class="foot-links">
+      <a href="/" data-i18n="foot.home">Home</a>
+      <a href="#services" data-i18n="foot.about">About</a>
+      <a href="#stack" data-i18n="foot.skills">Skills</a>
+      <a href="#contact" data-i18n="foot.contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/dist/js/bundle.min.js?v=6" defer></script>
+</body>
+</html>

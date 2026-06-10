@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ====== SEO ====== -->
+<title>QA Automatizácia testov — Jozef Anyalai | Python, Robot Framework, Selenium, CI/CD</title>
+<meta name="description" content="Automatizácia testovania softvéru na Slovensku. End-to-end testy, CI/CD pipelines, výkonnostné testy. Python, Robot Framework, Selenium, Jenkins. 3+ roky vo fintechu. Kontaktujte ma.">
+<meta name="keywords" content="automatizácia testovania, QA automatizácia, test automation slovensko, automatizované testovanie softvéru, QA tester, software testing, selenium, python, robot framework, CI/CD, jenkins, end-to-end testy, výkonnostné testy, záťažové testy, jmeter, automatizácia testov, QA engineer, testovací framework, regresné testy, API testovanie, fintech testovanie">
+<meta name="author" content="Jozef Anyalai">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<link rel="canonical" href="https://jozefanyalai.com/qa-automatizacia">
+<meta name="geo.region" content="SK">
+<meta name="geo.placename" content="Slovakia">
+
+<!-- ====== Open Graph ====== -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="QA Automatizácia testov — Jozef Anyalai | Slovensko">
+<meta property="og:description" content="Automatizácia testovania softvéru. End-to-end testy, CI/CD pipelines, výkonnostné testy. Python, Robot Framework, Selenium, Jenkins.">
+<meta property="og:url" content="https://jozefanyalai.com/qa-automatizacia">
+<meta property="og:site_name" content="Jozef Anyalai">
+<meta property="og:locale" content="sk_SK">
+<meta property="og:image" content="https://jozefanyalai.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- ====== Twitter Card ====== -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="QA Automatizácia testov — Jozef Anyalai">
+<meta name="twitter:description" content="Automatizácia testovania softvéru. Python, Robot Framework, Selenium, CI/CD.">
+<meta name="twitter:image" content="https://jozefanyalai.com/og-image.png">
+
+<!-- ====== JSON-LD ====== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "Automatizácia testovania softvéru",
+      "description": "End-to-end automatizácia testov, CI/CD pipelines, výkonnostné testy, API testovanie. Python, Robot Framework, Selenium, Jenkins, JMeter.",
+      "provider": { "@id": "https://jozefanyalai.com/#person" },
+      "areaServed": [
+        { "@type": "Country", "name": "Slovakia" },
+        { "@type": "Country", "name": "Czech Republic" },
+        { "@type": "Place", "name": "Europe" }
+      ],
+      "serviceType": ["Test Automation", "QA Automation", "CI/CD Pipeline Setup", "Performance Testing", "API Testing", "End-to-end Testing"]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://jozefanyalai.com/#person",
+      "name": "Jozef Anyalai",
+      "url": "https://jozefanyalai.com/",
+      "email": "hello@jozefanyalai.com",
+      "jobTitle": "QA Automation Engineer",
+      "sameAs": ["https://www.linkedin.com/in/jozef-anyalai/", "https://github.com/jozefanyalai"]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Domov", "item": "https://jozefanyalai.com/" },
+        { "@type": "ListItem", "position": 2, "name": "QA Automatizácia", "item": "https://jozefanyalai.com/qa-automatizacia" }
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- ====== Favicon ====== -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+<!-- ====== Critical CSS ====== -->
+<style>
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+:root{--bg-0:#07060d;--bg-1:#0c0a16;--surface:rgba(22,16,38,.55);--border:rgba(139,92,246,.13);--text:#ECE6F7;--text-muted:#A89DC4;--text-dim:#6F6488;--accent:#8B5CF6;--accent-2:#A855F7;--font:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:var(--font);background:var(--bg-0);color:var(--text);line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+::selection{background:var(--accent);color:#fff}
+a{color:inherit}
+nav{position:fixed;top:16px;left:16px;right:16px;z-index:100}
+.bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none}
+</style>
+
+<!-- ====== Fonts ====== -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"></noscript>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+
+<!-- ====== Main CSS ====== -->
+<link rel="preload" as="style" href="/dist/css/styles.min.css?v=6">
+<link rel="stylesheet" href="/dist/css/styles.min.css?v=6" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/dist/css/styles.min.css?v=6"></noscript>
+
+</head>
+<body data-page="testing">
+
+<div class="bg-grid"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-bar">
+    <a href="/" class="back-btn" title="Back to home">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      <span data-i18n="nav.home">Home</span>
+    </a>
+    <a href="/" class="logo">
+      <span class="logo-mark">JA</span>
+      <span>Jozef Anyalai</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#" data-nav="about" data-i18n="nav.about">About</a></li>
+      <li><a href="#" data-nav="skills" data-i18n="nav.skills">Skills</a></li>
+      <li><a href="#" data-nav="contact" data-i18n="nav.contact">Contact</a></li>
+    </ul>
+    <a href="#" class="nav-cta" data-nav="contact">
+      <span data-i18n="nav.cta">Get in touch</span>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+    <button class="burger" id="burgerBtn" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-drawer" id="navDrawer">
+    <ul class="nav-links">
+      <li><a href="#" data-nav="about" data-i18n="nav.about">About</a></li>
+      <li><a href="#" data-nav="skills" data-i18n="nav.skills">Skills</a></li>
+      <li><a href="#" data-nav="contact" data-i18n="nav.contact">Contact</a></li>
+      <li class="mobile-lang-item"></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-pill reveal">
+        <span class="tag" data-i18n="test.hero.tag">QA &middot; DEV &middot; OPS</span>
+        <span data-i18n="test.hero.tagline">Test automation engineer based in Europe</span>
+        <span class="arrow">&rarr;</span>
+      </div>
+      <h1 class="hero-title reveal d1">
+        <span data-i18n="test.hero.title1">Reliable software,</span><br>
+        <span class="gradient" data-i18n="test.hero.title2">tested end-to-end.</span>
+      </h1>
+      <p class="hero-sub reveal d2" data-i18n="test.hero.sub">
+        I'm Jozef — a QA automation engineer at 365.bank with 3+ years in fintech. I design automation frameworks in Python, build CI/CD pipelines in Jenkins, and run load tests that keep banking systems reliable.
+      </p>
+      <div class="hero-cta-row reveal d3">
+        <div class="cv-dropdown">
+          <button type="button" class="btn btn-primary cv-trigger">
+            <span data-i18n="test.hero.cv">Download CV</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          </button>
+          <div class="cv-menu">
+            <a href="/cv-en.pdf" download>🇬🇧 English</a>
+            <a href="/cv-sk.pdf" download>🇸🇰 Slovenčina</a>
+          </div>
+        </div>
+        <a href="#contact" class="btn btn-ghost">
+          <span data-i18n="test.hero.contact">Get in touch</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="hero-stage-wrap reveal d4">
+      <div class="sphere-tags">
+        <div class="ftag"><div class="ftag-ico"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><div><div class="ftag-label" data-i18n="test.ftag1.label">Framework</div><div class="ftag-value" data-i18n="test.ftag1.value">Robot &middot; Selenium</div></div></div>
+        <div class="ftag"><div class="ftag-ico"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div><div class="ftag-label" data-i18n="test.ftag2.label">Language</div><div class="ftag-value" data-i18n="test.ftag2.value">Python &middot; SQL</div></div></div>
+        <div class="ftag"><div class="ftag-ico"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div><div><div class="ftag-label">Pipeline</div><div class="ftag-value" data-i18n="test.ftag3.value">Jenkins CI &#10003;</div></div></div>
+        <div class="ftag"><div class="ftag-ico"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div><div class="ftag-label" data-i18n="test.ftag4.label">Perf test</div><div class="ftag-value" data-i18n="test.ftag4.value">JMeter &middot; Dynatrace</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGO STRIP -->
+<section class="logos">
+  <p class="logos-label reveal" data-i18n="test.logos.label">Working with</p>
+  <div class="logos-row reveal d1">
+    <span>Python</span><span>Robot Framework</span><span>Selenium</span><span>Appium</span><span>Jenkins</span><span>Docker</span><span>JMeter</span><span>Oracle &middot; MSSQL</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="block about" id="about">
+  <div class="container">
+    <div class="block-head">
+      <div class="pill reveal"><span class="dot"></span><span data-i18n="test.about.pill">About</span></div>
+      <h2 class="block-title reveal d1"><span data-i18n="test.about.title1">Testing fintech </span><span class="gradient" data-i18n="test.about.title2">since 2022.</span></h2>
+      <p class="block-sub reveal d2" data-i18n="test.about.sub">From manual QA to full automation — I build the frameworks, pipelines, and performance tests that keep banking systems running.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature big reveal">
+        <div class="feature-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <h3 data-i18n="test.about.me.title">About me</h3>
+        <div class="bio">
+          <p data-i18n="test.about.me.p1">Currently an <strong>Automation Engineer at 365.bank</strong> in Bratislava. I design and maintain backend test frameworks in <strong>Python with Robot Framework</strong>, integrated with Oracle DB, MSSQL, and Apache JMeter.</p>
+          <p data-i18n="test.about.me.p2">Before that I spent 2.5 years as a <strong>QA Tester</strong> at the same bank — testing SOAP/REST APIs, writing regression scripts in SoapUI and Postman, and <strong>mentoring 3 junior testers</strong> through onboarding.</p>
+          <p data-i18n="test.about.me.p3">Outside of work I run a <strong>Docker-based homelab</strong>, daily-drive Linux, and build side projects with <strong>FastAPI, PostgreSQL, and Tailwind CSS</strong>.</p>
+        </div>
+      </div>
+      <div class="feature reveal d1"><div class="feature-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><h3 data-i18n="test.feat.auto.title">Test Automation</h3><p data-i18n="test.feat.auto.desc">Backend and mobile test frameworks with Python, Robot Framework, Selenium, Playwright, and Appium — with parallel execution on physical devices via Selenium Grid.</p></div>
+      <div class="feature reveal d2"><div class="feature-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg></div><h3 data-i18n="test.feat.api.title">API Testing</h3><p data-i18n="test.feat.api.desc">SOAP and REST API testing with SoapUI and Postman. Automated regression scripts, contract validation, and synthetic test data generation.</p></div>
+      <div class="feature reveal d2"><div class="feature-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><h3 data-i18n="test.feat.cicd.title">CI / CD</h3><p data-i18n="test.feat.cicd.desc">Jenkins pipelines for automatic smoke and regression test runs on every deploy. Git, Gitea, and Docker-based workflows.</p><svg class="mini-chart" viewBox="0 0 200 60" preserveAspectRatio="none"><defs><linearGradient id="mc1" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#A855F7" stop-opacity="0.4"/><stop offset="100%" stop-color="#A855F7" stop-opacity="0"/></linearGradient></defs><path d="M0,40 L25,30 L50,35 L75,18 L100,25 L125,12 L150,20 L175,8 L200,14 L200,60 L0,60 Z" fill="url(#mc1)"/><path d="M0,40 L25,30 L50,35 L75,18 L100,25 L125,12 L150,20 L175,8 L200,14" fill="none" stroke="#C084FC" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+      <div class="feature reveal d3"><div class="feature-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div><h3 data-i18n="test.feat.perf.title">Performance Testing</h3><p data-i18n="test.feat.perf.desc">Load and stress testing with Apache JMeter. Results analysis from DB logs and Dynatrace. Health checks and monitoring for critical banking services.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="block skills" id="skills">
+  <div class="container">
+    <div class="block-head">
+      <div class="pill reveal"><span class="dot"></span><span data-i18n="test.skills.pill">Stack</span></div>
+      <h2 class="block-title reveal d1"><span data-i18n="test.skills.title1">Skills </span><span class="gradient" data-i18n="test.skills.title2">&amp; tools.</span></h2>
+      <p class="block-sub reveal d2" data-i18n="test.skills.sub">What I use day-to-day, grouped by where it sits in the stack.</p>
+    </div>
+    <div class="skill-grid">
+      <div class="skill-card reveal"><div class="skill-head"><div class="skill-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><span class="skill-name" data-i18n="test.sk.auto">Test Automation</span><span class="skill-count">06</span></div><div class="skill-list"><span class="chip"><span class="dot"></span>Python</span><span class="chip"><span class="dot"></span>Robot Framework</span><span class="chip"><span class="dot"></span>Selenium</span><span class="chip"><span class="dot"></span>Playwright</span><span class="chip"><span class="dot"></span>Appium</span><span class="chip"><span class="dot"></span>Selenium Grid</span></div></div>
+      <div class="skill-card reveal d1"><div class="skill-head"><div class="skill-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg></div><span class="skill-name" data-i18n="test.sk.api">API Testing</span><span class="skill-count">04</span></div><div class="skill-list"><span class="chip"><span class="dot"></span>REST</span><span class="chip"><span class="dot"></span>SOAP</span><span class="chip"><span class="dot"></span>SoapUI</span><span class="chip"><span class="dot"></span>Postman</span></div></div>
+      <div class="skill-card reveal d2"><div class="skill-head"><div class="skill-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div><span class="skill-name" data-i18n="test.sk.db">Databases</span><span class="skill-count">03</span></div><div class="skill-list"><span class="chip"><span class="dot"></span>Oracle DB</span><span class="chip"><span class="dot"></span>MSSQL</span><span class="chip"><span class="dot"></span>SQL &middot; CRUD</span></div></div>
+      <div class="skill-card reveal d1"><div class="skill-head"><div class="skill-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div><span class="skill-name" data-i18n="test.sk.cicd">CI/CD &amp; DevOps</span><span class="skill-count">04</span></div><div class="skill-list"><span class="chip"><span class="dot"></span>Jenkins</span><span class="chip"><span class="dot"></span>Git &middot; Gitea</span><span class="chip"><span class="dot"></span>Docker</span><span class="chip"><span class="dot"></span>Linux</span></div></div>
+      <div class="skill-card reveal d2"><div class="skill-head"><div class="skill-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><span class="skill-name" data-i18n="test.sk.perf">Performance</span><span class="skill-count">02</span></div><div class="skill-list"><span class="chip"><span class="dot"></span>Apache JMeter</span><span class="chip"><span class="dot"></span>Dynatrace</span></div></div>
+      <div class="skill-card reveal d3"><div class="skill-head"><div class="skill-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg></div><span class="skill-name" data-i18n="test.sk.qa">QA Workflow</span><span class="skill-count">02</span></div><div class="skill-list"><span class="chip"><span class="dot"></span>Jira</span><span class="chip"><span class="dot"></span>Confluence</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<section class="cta-strip">
+  <div class="cta-card reveal">
+    <h2 data-i18n="test.cta.title">Need a test automation partner?</h2>
+    <p data-i18n="test.cta.sub">Open to full-time and freelance work. Email is the fastest way — usually a reply within a day or two.</p>
+    <div class="btn-row">
+      <a href="#contact" class="btn btn-primary"><span data-i18n="test.cta.btn">Start a conversation</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      <div class="cv-dropdown"><button type="button" class="btn btn-ghost cv-trigger"><span data-i18n="test.cta.cv">Download CV</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button><div class="cv-menu"><a href="/cv-en.pdf" download>🇬🇧 English</a><a href="/cv-sk.pdf" download>🇸🇰 Slovenčina</a></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="block contact" id="contact">
+  <div class="container">
+    <div class="block-head">
+      <div class="pill reveal"><span class="dot"></span><span data-i18n="test.contact.pill">Contact</span></div>
+      <h2 class="block-title reveal d1"><span data-i18n="test.contact.title1">Get in </span><span class="gradient" data-i18n="test.contact.title2">touch.</span></h2>
+      <p class="block-sub reveal d2" data-i18n="test.contact.sub">Drop a message or use any of the channels below.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="channels">
+          <a href="mailto:hello@jozefanyalai.com" class="channel"><div class="channel-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="channel-text"><strong data-i18n="contact.email.label">Email</strong><span>hello@jozefanyalai.com</span></div></a>
+          <a href="https://www.linkedin.com/in/jozef-anyalai/" class="channel" target="_blank" rel="noopener"><div class="channel-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div><div class="channel-text"><strong data-i18n="contact.li.label">LinkedIn</strong><span>/in/jozefanyalai</span></div></a>
+          <a href="https://github.com/jozefanyalai" class="channel" target="_blank" rel="noopener"><div class="channel-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></div><div class="channel-text"><strong data-i18n="contact.gh.label">GitHub</strong><span>/jozefanyalai</span></div></a>
+        </div>
+      </div>
+      <form class="glass-form reveal d1" id="contactForm" novalidate>
+        <div class="glass-row">
+          <div class="glass-field">
+            <input type="text" id="name" name="name" placeholder=" " autocomplete="name">
+            <label for="name"><span data-i18n="form.name.label">Name</span> <span class="req">*</span></label>
+            <div class="err" id="err-name" data-i18n="form.err.name">Please enter your name</div>
+          </div>
+          <div class="glass-field">
+            <input type="email" id="email" name="email" placeholder=" " autocomplete="email">
+            <label for="email"><span data-i18n="form.email.label">Email</span> <span class="req">*</span></label>
+            <div class="err" id="err-email" data-i18n="form.err.email">Please enter a valid email</div>
+          </div>
+        </div>
+        <div class="glass-field">
+          <textarea id="message" name="message" placeholder=" "></textarea>
+          <label for="message"><span data-i18n="form.msg.label">Message</span> <span class="req">*</span></label>
+          <div class="err" id="err-message" data-i18n="form.err.msg">Message can't be empty</div>
+        </div>
+        <button type="submit" class="btn btn-primary submit"><span id="submitText" data-i18n="form.submit">Send message</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+        <div class="ok-msg" id="formSuccess"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="form.ok">Message sent — talk soon.</span></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <p>&copy; 2026 Jozef Anyalai</p>
+    <div class="foot-links">
+      <a href="/" data-i18n="foot.home">Home</a>
+      <a href="#about" data-i18n="foot.about">About</a>
+      <a href="#skills" data-i18n="foot.skills">Skills</a>
+      <a href="#contact" data-i18n="foot.contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/dist/js/bundle.min.js?v=6" defer></script>
+</body>
+</html>

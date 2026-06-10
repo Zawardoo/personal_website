@@ -25,7 +25,9 @@
       "Bash(where inkscape *)",
       "Bash(where chrome *)",
       "Bash(not exist *)",
-      "PowerShell(New-Item -ItemType Directory -Path \"D:\\\\WEBY\\\\MS-detailing\" -Force)"
+      "PowerShell(New-Item -ItemType Directory -Path \"D:\\\\WEBY\\\\MS-detailing\" -Force)",
+      "Bash(npm run *)",
+      "PowerShell($r = Invoke-WebRequest \"http://localhost:3000/gallery\" -UseBasicParsing; \"status: $\\($r.StatusCode\\)\"; \"porsche card: $\\($r.Content.Contains\\('Porsche 911 Turbo S'\\)\\)\"; \"thumb: $\\($r.Content.Contains\\('thumb.jpg'\\)\\)\"; $d = Invoke-WebRequest \"http://localhost:3000/gallery/porsche-911-turbo-s\" -UseBasicParsing; \"detail status: $\\($d.StatusCode\\)\"; \"photo count: $\\(\\([regex]::Matches\\($d.Content, '/gallery/porsche-911-turbo-s/0\\\\d\\\\.jpg'\\)\\).Count\\)\")"
     ]
   }
 }

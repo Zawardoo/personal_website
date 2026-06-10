@@ -6,7 +6,7 @@ import { getCurrentView } from './router.js';
 
 const SECTION_MAP = {
   testing: { about: 'about', skills: 'skills', contact: 'contact' },
-  webdev:  { about: 'services-wd', skills: 'stack-wd', contact: 'contact-wd' },
+  webdev:  { about: 'services', skills: 'stack', contact: 'contact' },
 };
 
 function closeMobileMenu() {
@@ -18,14 +18,15 @@ function closeMobileMenu() {
 
 export function initNav() {
   const nav = document.getElementById('navbar');
+  if (!nav) return;  // no nav on splash page
 
-  // Scroll → add "scrolled" class (rAF-batched to avoid forced reflow)
+  // Scroll → add "scrolled" class (rAF-batched)
   let scrollTicking = false;
   window.addEventListener('scroll', () => {
     if (scrollTicking) return;
     scrollTicking = true;
     requestAnimationFrame(() => {
-      if (nav) nav.classList.toggle('scrolled', window.scrollY > 24);
+      nav.classList.toggle('scrolled', window.scrollY > 24);
       scrollTicking = false;
     });
   }, { passive: true });
@@ -52,9 +53,8 @@ export function initNav() {
       navDrawer.classList.toggle('open');
       burgerBtn.classList.toggle('open');
     });
-    // Close on outside click
     document.addEventListener('click', e => {
-      if (nav && !nav.contains(e.target)) closeMobileMenu();
+      if (!nav.contains(e.target)) closeMobileMenu();
     });
   }
 }

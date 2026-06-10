@@ -9,10 +9,6 @@ import { initReveal }    from './reveal.js';
 import { initSpotlight } from './spotlight.js';
 import { initForms }     from './forms.js';
 import { initI18n }      from './i18n.js';
-import { initSphere }    from './sphere/index.js';
-
-// Sphere must init first (sets window.sphereCtrl before router needs it)
-initSphere();
 initRouter();
 initNav();
 initParallax();

@@ -15,7 +15,7 @@
 <meta name="geo.region" content="SK">
 <meta name="geo.placename" content="Slovakia">
 
-<!-- ====== SEO: Open Graph (Facebook, LinkedIn) ====== -->
+<!-- ====== SEO: Open Graph ====== -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Jozef Anyalai — Tvorba webov na mieru · QA automatizácia | Slovensko">
 <meta property="og:description" content="Webové stránky na mieru a automatizácia testovania softvéru. Bez šablón — všetko od nuly. Weby, full-stack aplikácie, end-to-end testy, CI/CD pipelines.">
@@ -55,20 +55,12 @@
       "email": "hello@jozefanyalai.com",
       "jobTitle": "Web Developer & QA Automation Engineer",
       "description": "Webový vývojár a QA automation engineer zo Slovenska. Tvorba webových stránok na mieru a automatizácia testovania softvéru.",
-      "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "SK",
-        "addressRegion": "Slovensko"
-      },
+      "address": { "@type": "PostalAddress", "addressCountry": "SK", "addressRegion": "Slovensko" },
       "sameAs": [
         "https://www.linkedin.com/in/jozef-anyalai/",
         "https://github.com/jozefanyalai"
       ],
-      "knowsAbout": [
-        "Web Development", "Tvorba webových stránok", "QA Automation",
-        "Test Automation", "Python", "JavaScript", "Selenium", "Robot Framework",
-        "CI/CD", "Jenkins", "WebGL", "FastAPI", "PostgreSQL", "Figma"
-      ]
+      "knowsAbout": ["Web Development", "Tvorba webových stránok", "QA Automation", "Test Automation", "Python", "JavaScript", "Selenium", "Robot Framework", "CI/CD", "Jenkins", "WebGL", "FastAPI", "PostgreSQL", "Figma"]
     },
     {
       "@type": "ProfessionalService",
@@ -82,143 +74,83 @@
         { "@type": "Country", "name": "Czech Republic" },
         { "@type": "Place", "name": "Europe" }
       ],
-      "serviceType": [
-        "Tvorba webových stránok",
-        "Webové stránky na mieru",
-        "Full-stack web development",
-        "Automatizácia testovania softvéru",
-        "QA Automation",
-        "End-to-end testovanie",
-        "CI/CD pipeline setup",
-        "Vizuálna identita a branding",
-        "WebGL interaktívne weby"
-      ],
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Služby",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Tvorba webových stránok na mieru",
-              "description": "Ručne kódované weby bez šablón. Dizajn vo Figme, HTML, CSS, JavaScript, WebGL efekty."
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Full-stack webové aplikácie",
-              "description": "Webové aplikácie s autentifikáciou, databázami a API. Python, FastAPI, PostgreSQL, Supabase."
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Automatizácia testovania",
-              "description": "End-to-end automatizácia testov, CI/CD pipelines, výkonnostné testy. Python, Robot Framework, Selenium, Jenkins."
-            }
-          }
-        ]
-      }
+      "serviceType": ["Tvorba webových stránok", "Webové stránky na mieru", "Full-stack web development", "Automatizácia testovania softvéru", "QA Automation", "End-to-end testovanie", "CI/CD pipeline setup", "Vizuálna identita a branding", "WebGL interaktívne weby"]
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Domov", "item": "https://jozefanyalai.com/" },
-        { "@type": "ListItem", "position": 2, "name": "QA Automatizácia", "item": "https://jozefanyalai.com/#testing" },
-        { "@type": "ListItem", "position": 3, "name": "Tvorba webov", "item": "https://jozefanyalai.com/#webdev" }
+        { "@type": "ListItem", "position": 2, "name": "QA Automatizácia", "item": "https://jozefanyalai.com/qa-automatizacia" },
+        { "@type": "ListItem", "position": 3, "name": "Tvorba webov", "item": "https://jozefanyalai.com/tvorba-webov" }
       ]
     }
   ]
 }
 </script>
 
-<!-- ====== Favicon ====== -->
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<!-- ====== Legacy hash redirects ====== -->
+<script>
+if(location.hash==='#testing')location.replace('/qa-automatizacia');
+if(location.hash==='#webdev')location.replace('/tvorba-webov');
+</script>
 
-<!-- ====== Critical CSS (inlined to avoid render-blocking) ====== -->
+<!-- ====== Favicon ====== -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+<!-- ====== Critical CSS ====== -->
 <style>
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-:root{--bg-0:#07060d;--bg-1:#0c0a16;--bg-2:#110d1f;--surface:rgba(22,16,38,.55);--border:rgba(139,92,246,.13);--text:#ECE6F7;--text-muted:#A89DC4;--text-dim:#6F6488;--accent:#8B5CF6;--accent-2:#A855F7;--accent-3:#C084FC;--accent-glow:rgba(139,92,246,.45);--font:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace}
+:root{--bg-0:#07060d;--bg-1:#0c0a16;--surface:rgba(22,16,38,.55);--border:rgba(139,92,246,.13);--text:#ECE6F7;--text-muted:#A89DC4;--text-dim:#6F6488;--accent:#8B5CF6;--accent-2:#A855F7;--font:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;overflow-x:hidden}
-body{font-family:var(--font);background:var(--bg-0);color:var(--text);line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+body{font-family:var(--font);background:var(--bg-0);color:var(--text);line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 ::selection{background:var(--accent);color:#fff}
 a{color:inherit}
-#sphereCanvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
-.splash{position:fixed;inset:0;z-index:10;display:flex;align-items:safe center;justify-content:center;padding:24px;overflow-y:auto;pointer-events:none;opacity:0;transition:opacity .45s}
-.view-splash .splash{opacity:1;pointer-events:auto}
+.splash{position:relative;min-height:100vh;z-index:10;display:flex;align-items:safe center;justify-content:center;padding:24px;overflow-y:auto}
 .splash-inner{max-width:720px;width:100%;text-align:center;margin:auto;padding:40px 0}
 .splash-name{font-size:clamp(2.6rem,7vw,4.8rem);font-weight:800;letter-spacing:-.04em;line-height:1.05;margin:12px 0 16px}
 .splash-eyebrow{font-family:var(--mono);font-size:.75rem;color:var(--text-dim);letter-spacing:.12em;text-transform:uppercase}
 .splash-sub{color:var(--text-muted);max-width:460px;margin:0 auto 32px;font-size:.97rem;line-height:1.6}
 .splash-question{color:var(--text-dim);font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
 .splash-cards{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:40px}
-.splash-card{flex:1 1 280px;max-width:340px;padding:28px 24px;border-radius:16px;background:var(--surface);border:1px solid var(--border);text-align:left;cursor:pointer;transition:border-color .25s,transform .25s}
-.view-content{display:none;opacity:0}
-body.view-splash .splash{opacity:1;pointer-events:auto}
-body.view-splash nav{opacity:0;pointer-events:none}
-body.view-splash .view-content{display:none;opacity:0}
-body.view-splash footer{display:none}
-body.view-testing #view-testing,body.view-webdev #view-webdev{display:block;opacity:1}
-body.view-testing .splash,body.view-webdev .splash{opacity:0;pointer-events:none}
-nav{position:fixed;top:16px;left:16px;right:16px;z-index:100;display:none}
-body.view-testing nav,body.view-webdev nav{display:block;opacity:1;pointer-events:auto}
-footer{display:none}
-body.view-testing footer,body.view-webdev footer{display:block}
+.splash-card{flex:1 1 280px;max-width:340px;padding:28px 24px;border-radius:16px;background:var(--surface);border:1px solid var(--border);text-align:left;cursor:pointer;transition:border-color .25s,transform .25s;text-decoration:none;color:inherit}
 .bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none}
 </style>
 
-<!-- ====== Fonts: preconnect + split loading ====== -->
+<!-- ====== Fonts ====== -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<!-- Inter (primary font) — preloaded, async non-blocking -->
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"></noscript>
-
-<!-- JetBrains Mono (code tags only) — deferred, loads after page paint -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
 
-<!-- ====== Main CSS: preload + async (non-render-blocking) ====== -->
-<link rel="preload" as="style" href="dist/css/styles.min.css?v=5">
-<link rel="stylesheet" href="dist/css/styles.min.css?v=5" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="dist/css/styles.min.css?v=5"></noscript>
+<!-- ====== Main CSS ====== -->
+<link rel="preload" as="style" href="/dist/css/styles.min.css?v=6">
+<link rel="stylesheet" href="/dist/css/styles.min.css?v=6" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/dist/css/styles.min.css?v=6"></noscript>
 
 </head>
-<body class="view-splash">
+<body data-page="splash">
 
-<!-- SEO: Hidden semantic content for crawlers (visible to screen readers too) -->
+<!-- SEO: Semantic content for crawlers -->
 <div class="sr-only" aria-hidden="false">
   <h1>Jozef Anyalai — Tvorba webových stránok na mieru a QA automatizácia testov</h1>
   <p>Profesionálna tvorba webových stránok na mieru pre firmy a podnikateľov na Slovensku. Webový vývojár a QA automation engineer s viac ako 3 rokmi skúseností vo fintechu. Ponúkam tvorbu webov od nuly bez šablón, full-stack webové aplikácie, automatizáciu testovania softvéru, end-to-end testy a CI/CD pipelines. Pôsobím po celom Slovensku — Bratislava, Košice, Žilina, Banská Bystrica, Nitra, Trnava, Trenčín, Prešov a ďalšie mestá.</p>
   <h2>Služby</h2>
   <ul>
-    <li>Tvorba webových stránok na mieru — ručne kódované weby, žiadne šablóny</li>
-    <li>Vizuálna identita a branding — logo, farby, typografia, Figma prototypy</li>
-    <li>Full-stack webové aplikácie — Python, FastAPI, PostgreSQL, Supabase</li>
-    <li>Interaktívne WebGL efekty — 3D vizuály a shader animácie</li>
-    <li>Automatizácia testovania — Python, Robot Framework, Selenium, Playwright</li>
-    <li>API testovanie — REST, SOAP, Postman, SoapUI</li>
-    <li>CI/CD pipelines — Jenkins, Git, Docker, automatizované spúšťanie testov</li>
-    <li>Výkonnostné testy — Apache JMeter, záťažové testy, Dynatrace</li>
-    <li>Hosting a údržba — Docker, Linux VPS, Vercel, SSL, monitoring</li>
+    <li><a href="/tvorba-webov">Tvorba webových stránok na mieru</a> — ručne kódované weby, žiadne šablóny</li>
+    <li><a href="/tvorba-webov">Full-stack webové aplikácie</a> — Python, FastAPI, PostgreSQL, Supabase</li>
+    <li><a href="/qa-automatizacia">Automatizácia testovania</a> — Python, Robot Framework, Selenium, Playwright</li>
+    <li><a href="/qa-automatizacia">CI/CD pipelines</a> — Jenkins, Git, Docker, automatizované spúšťanie testov</li>
   </ul>
 </div>
 
-<!-- Full-page WebGL canvas — dual sphere background -->
-<canvas id="sphereCanvas" aria-hidden="true"></canvas>
 <div class="bg-grid"></div>
 
-<!-- ============================================================
-     SPLASH — dual-sphere landing
-     ============================================================ -->
-<div id="splash" class="splash">
+<!-- SPLASH -->
+<div class="splash">
   <div class="splash-inner">
     <header class="splash-header">
       <p class="splash-eyebrow" data-i18n="splash.eyebrow">QA Automation &middot; Web Development</p>
@@ -228,7 +160,7 @@ body.view-testing footer,body.view-webdev footer{display:block}
     </header>
 
     <div class="splash-cards">
-      <div class="splash-card" data-view="testing">
+      <a href="/qa-automatizacia" class="splash-card">
         <span class="splash-card-num">01</span>
         <div class="splash-card-dot purple"></div>
         <h2 data-i18n="splash.testing.title">Need reliable test automation?</h2>
@@ -237,8 +169,8 @@ body.view-testing footer,body.view-webdev footer{display:block}
           <span data-i18n="splash.testing.cta">Show me more</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </span>
-      </div>
-      <div class="splash-card" data-view="webdev">
+      </a>
+      <a href="/tvorba-webov" class="splash-card">
         <span class="splash-card-num">02</span>
         <div class="splash-card-dot blue"></div>
         <h2 data-i18n="splash.webdev.title">Need a custom website?</h2>
@@ -247,7 +179,7 @@ body.view-testing footer,body.view-webdev footer{display:block}
           <span data-i18n="splash.webdev.cta">Show me more</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </span>
-      </div>
+      </a>
     </div>
 
     <div class="splash-footer">
@@ -260,745 +192,6 @@ body.view-testing footer,body.view-webdev footer{display:block}
   </div>
 </div>
 
-<!-- NAV (hidden in splash, appears in service views) -->
-<nav id="navbar">
-  <div class="nav-bar">
-    <button class="back-btn" id="backBtn" title="Back to home">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-      <span data-i18n="nav.home">Home</span>
-    </button>
-    <a href="#" class="logo">
-      <span class="logo-mark">JA</span>
-      <span>Jozef Anyalai</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="#" data-nav="about" data-i18n="nav.about">About</a></li>
-      <li><a href="#" data-nav="skills" data-i18n="nav.skills">Skills</a></li>
-      <li><a href="#" data-nav="contact" data-i18n="nav.contact">Contact</a></li>
-    </ul>
-    <a href="#" class="nav-cta" data-nav="contact">
-      <span data-i18n="nav.cta">Get in touch</span>
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-    </a>
-    <button class="burger" id="burgerBtn" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-  <div class="nav-drawer" id="navDrawer">
-    <ul class="nav-links">
-      <li><a href="#" data-nav="about" data-i18n="nav.about">About</a></li>
-      <li><a href="#" data-nav="skills" data-i18n="nav.skills">Skills</a></li>
-      <li><a href="#" data-nav="contact" data-i18n="nav.contact">Contact</a></li>
-      <li class="mobile-lang-item"></li>
-    </ul>
-  </div>
-</nav>
-
-<!-- ============================================================
-     VIEW: TESTING (purple)
-     ============================================================ -->
-<div id="view-testing" class="view-content">
-
-<!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-glow"></div>
-  <div class="hero-content">
-    <div class="hero-text">
-      <div class="hero-pill reveal">
-        <span class="tag" data-i18n="test.hero.tag">QA &middot; DEV &middot; OPS</span>
-        <span data-i18n="test.hero.tagline">Test automation engineer based in Europe</span>
-        <span class="arrow">&rarr;</span>
-      </div>
-      <h1 class="hero-title reveal d1">
-        <span data-i18n="test.hero.title1">Reliable software,</span><br>
-        <span class="gradient" data-i18n="test.hero.title2">tested end-to-end.</span>
-      </h1>
-      <p class="hero-sub reveal d2" data-i18n="test.hero.sub">
-        I'm Jozef — a QA automation engineer at 365.bank with 3+ years in fintech. I design automation frameworks in Python, build CI/CD pipelines in Jenkins, and run load tests that keep banking systems reliable.
-      </p>
-      <div class="hero-cta-row reveal d3">
-        <div class="cv-dropdown">
-          <button type="button" class="btn btn-primary cv-trigger">
-            <span data-i18n="test.hero.cv">Download CV</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          </button>
-          <div class="cv-menu">
-            <a href="/cv-en.pdf" download>🇬🇧 English</a>
-            <a href="/cv-sk.pdf" download>🇸🇰 Slovenčina</a>
-          </div>
-        </div>
-        <a href="#contact" class="btn btn-ghost">
-          <span data-i18n="test.hero.contact">Get in touch</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
-      </div>
-    </div>
-
-    <div class="hero-stage-wrap reveal d4">
-      <div class="sphere" id="liquidSphere" aria-hidden="true"></div>
-      <div class="sphere-tags">
-        <div class="ftag">
-          <div class="ftag-ico">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-          </div>
-          <div>
-            <div class="ftag-label" data-i18n="test.ftag1.label">Framework</div>
-            <div class="ftag-value" data-i18n="test.ftag1.value">Robot &middot; Selenium</div>
-          </div>
-        </div>
-        <div class="ftag">
-          <div class="ftag-ico">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-          </div>
-          <div>
-            <div class="ftag-label" data-i18n="test.ftag2.label">Language</div>
-            <div class="ftag-value" data-i18n="test.ftag2.value">Python &middot; SQL</div>
-          </div>
-        </div>
-        <div class="ftag">
-          <div class="ftag-ico">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-          </div>
-          <div>
-            <div class="ftag-label">Pipeline</div>
-            <div class="ftag-value" data-i18n="test.ftag3.value">Jenkins CI &#10003;</div>
-          </div>
-        </div>
-        <div class="ftag">
-          <div class="ftag-ico">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-          </div>
-          <div>
-            <div class="ftag-label" data-i18n="test.ftag4.label">Perf test</div>
-            <div class="ftag-value" data-i18n="test.ftag4.value">JMeter &middot; Dynatrace</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- LOGO STRIP -->
-<section class="logos">
-  <p class="logos-label reveal" data-i18n="test.logos.label">Working with</p>
-  <div class="logos-row reveal d1">
-    <span>Python</span>
-    <span>Robot Framework</span>
-    <span>Selenium</span>
-    <span>Appium</span>
-    <span>Jenkins</span>
-    <span>Docker</span>
-    <span>JMeter</span>
-    <span>Oracle &middot; MSSQL</span>
-  </div>
-</section>
-
-<!-- ABOUT / FEATURE GRID -->
-<section class="block about" id="about">
-  <div class="container">
-    <div class="block-head">
-      <div class="pill reveal"><span class="dot"></span><span data-i18n="test.about.pill">About</span></div>
-      <h2 class="block-title reveal d1"><span data-i18n="test.about.title1">Testing fintech </span><span class="gradient" data-i18n="test.about.title2">since 2022.</span></h2>
-      <p class="block-sub reveal d2" data-i18n="test.about.sub">From manual QA to full automation — I build the frameworks, pipelines, and performance tests that keep banking systems running.</p>
-    </div>
-
-    <div class="feature-grid">
-      <div class="feature big reveal">
-        <div class="feature-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        </div>
-        <h3 data-i18n="test.about.me.title">About me</h3>
-        <div class="bio">
-          <p data-i18n="test.about.me.p1">Currently an <strong>Automation Engineer at 365.bank</strong> in Bratislava. I design and maintain backend test frameworks in <strong>Python with Robot Framework</strong>, integrated with Oracle DB, MSSQL, and Apache JMeter.</p>
-          <p data-i18n="test.about.me.p2">Before that I spent 2.5 years as a <strong>QA Tester</strong> at the same bank — testing SOAP/REST APIs, writing regression scripts in SoapUI and Postman, and <strong>mentoring 3 junior testers</strong> through onboarding.</p>
-          <p data-i18n="test.about.me.p3">Outside of work I run a <strong>Docker-based homelab</strong>, daily-drive Linux, and build side projects with <strong>FastAPI, PostgreSQL, and Tailwind CSS</strong>.</p>
-        </div>
-      </div>
-
-      <div class="feature reveal d1">
-        <div class="feature-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-        </div>
-        <h3 data-i18n="test.feat.auto.title">Test Automation</h3>
-        <p data-i18n="test.feat.auto.desc">Backend and mobile test frameworks with Python, Robot Framework, Selenium, Playwright, and Appium — with parallel execution on physical devices via Selenium Grid.</p>
-      </div>
-
-      <div class="feature reveal d2">
-        <div class="feature-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
-        </div>
-        <h3 data-i18n="test.feat.api.title">API Testing</h3>
-        <p data-i18n="test.feat.api.desc">SOAP and REST API testing with SoapUI and Postman. Automated regression scripts, contract validation, and synthetic test data generation.</p>
-      </div>
-
-      <div class="feature reveal d2">
-        <div class="feature-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-        </div>
-        <h3 data-i18n="test.feat.cicd.title">CI / CD</h3>
-        <p data-i18n="test.feat.cicd.desc">Jenkins pipelines for automatic smoke and regression test runs on every deploy. Git, Gitea, and Docker-based workflows.</p>
-        <svg class="mini-chart" viewBox="0 0 200 60" preserveAspectRatio="none">
-          <defs>
-            <linearGradient id="mc1" x1="0" x2="0" y1="0" y2="1">
-              <stop offset="0%" stop-color="#A855F7" stop-opacity="0.4"/>
-              <stop offset="100%" stop-color="#A855F7" stop-opacity="0"/>
-            </linearGradient>
-          </defs>
-          <path d="M0,40 L25,30 L50,35 L75,18 L100,25 L125,12 L150,20 L175,8 L200,14 L200,60 L0,60 Z" fill="url(#mc1)"/>
-          <path d="M0,40 L25,30 L50,35 L75,18 L100,25 L125,12 L150,20 L175,8 L200,14" fill="none" stroke="#C084FC" stroke-width="1.8" stroke-linecap="round"/>
-        </svg>
-      </div>
-
-      <div class="feature reveal d3">
-        <div class="feature-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-        </div>
-        <h3 data-i18n="test.feat.perf.title">Performance Testing</h3>
-        <p data-i18n="test.feat.perf.desc">Load and stress testing with Apache JMeter. Results analysis from DB logs and Dynatrace. Health checks and monitoring for critical banking services.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SKILLS -->
-<section class="block skills" id="skills">
-  <div class="container">
-    <div class="block-head">
-      <div class="pill reveal"><span class="dot"></span><span data-i18n="test.skills.pill">Stack</span></div>
-      <h2 class="block-title reveal d1"><span data-i18n="test.skills.title1">Skills </span><span class="gradient" data-i18n="test.skills.title2">&amp; tools.</span></h2>
-      <p class="block-sub reveal d2" data-i18n="test.skills.sub">What I use day-to-day, grouped by where it sits in the stack.</p>
-    </div>
-
-    <div class="skill-grid">
-      <div class="skill-card reveal">
-        <div class="skill-head">
-          <div class="skill-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
-          <span class="skill-name" data-i18n="test.sk.auto">Test Automation</span>
-          <span class="skill-count">06</span>
-        </div>
-        <div class="skill-list">
-          <span class="chip"><span class="dot"></span>Python</span>
-          <span class="chip"><span class="dot"></span>Robot Framework</span>
-          <span class="chip"><span class="dot"></span>Selenium</span>
-          <span class="chip"><span class="dot"></span>Playwright</span>
-          <span class="chip"><span class="dot"></span>Appium</span>
-          <span class="chip"><span class="dot"></span>Selenium Grid</span>
-        </div>
-      </div>
-
-      <div class="skill-card reveal d1">
-        <div class="skill-head">
-          <div class="skill-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg></div>
-          <span class="skill-name" data-i18n="test.sk.api">API Testing</span>
-          <span class="skill-count">04</span>
-        </div>
-        <div class="skill-list">
-          <span class="chip"><span class="dot"></span>REST</span>
-          <span class="chip"><span class="dot"></span>SOAP</span>
-          <span class="chip"><span class="dot"></span>SoapUI</span>
-          <span class="chip"><span class="dot"></span>Postman</span>
-        </div>
-      </div>
-
-      <div class="skill-card reveal d2">
-        <div class="skill-head">
-          <div class="skill-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
-          <span class="skill-name" data-i18n="test.sk.db">Databases</span>
-          <span class="skill-count">03</span>
-        </div>
-        <div class="skill-list">
-          <span class="chip"><span class="dot"></span>Oracle DB</span>
-          <span class="chip"><span class="dot"></span>MSSQL</span>
-          <span class="chip"><span class="dot"></span>SQL &middot; CRUD</span>
-        </div>
-      </div>
-
-      <div class="skill-card reveal d1">
-        <div class="skill-head">
-          <div class="skill-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
-          <span class="skill-name" data-i18n="test.sk.cicd">CI/CD &amp; DevOps</span>
-          <span class="skill-count">04</span>
-        </div>
-        <div class="skill-list">
-          <span class="chip"><span class="dot"></span>Jenkins</span>
-          <span class="chip"><span class="dot"></span>Git &middot; Gitea</span>
-          <span class="chip"><span class="dot"></span>Docker</span>
-          <span class="chip"><span class="dot"></span>Linux</span>
-        </div>
-      </div>
-
-      <div class="skill-card reveal d2">
-        <div class="skill-head">
-          <div class="skill-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
-          <span class="skill-name" data-i18n="test.sk.perf">Performance</span>
-          <span class="skill-count">02</span>
-        </div>
-        <div class="skill-list">
-          <span class="chip"><span class="dot"></span>Apache JMeter</span>
-          <span class="chip"><span class="dot"></span>Dynatrace</span>
-        </div>
-      </div>
-
-      <div class="skill-card reveal d3">
-        <div class="skill-head">
-          <div class="skill-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg></div>
-          <span class="skill-name" data-i18n="test.sk.qa">QA Workflow</span>
-          <span class="skill-count">02</span>
-        </div>
-        <div class="skill-list">
-          <span class="chip"><span class="dot"></span>Jira</span>
-          <span class="chip"><span class="dot"></span>Confluence</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA STRIP -->
-<section class="cta-strip">
-  <div class="cta-card reveal">
-    <h2 data-i18n="test.cta.title">Need a test automation partner?</h2>
-    <p data-i18n="test.cta.sub">Open to full-time and freelance work. Email is the fastest way — usually a reply within a day or two.</p>
-    <div class="btn-row">
-      <a href="#contact" class="btn btn-primary">
-        <span data-i18n="test.cta.btn">Start a conversation</span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
-      <div class="cv-dropdown">
-          <button type="button" class="btn btn-ghost cv-trigger">
-            <span data-i18n="test.cta.cv">Download CV</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          </button>
-          <div class="cv-menu">
-            <a href="/cv-en.pdf" download>🇬🇧 English</a>
-            <a href="/cv-sk.pdf" download>🇸🇰 Slovenčina</a>
-          </div>
-        </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section class="block contact" id="contact">
-  <div class="container">
-    <div class="block-head">
-      <div class="pill reveal"><span class="dot"></span><span data-i18n="test.contact.pill">Contact</span></div>
-      <h2 class="block-title reveal d1"><span data-i18n="test.contact.title1">Get in </span><span class="gradient" data-i18n="test.contact.title2">touch.</span></h2>
-      <p class="block-sub reveal d2" data-i18n="test.contact.sub">Drop a message or use any of the channels below.</p>
-    </div>
-
-    <div class="contact-grid">
-      <div class="reveal">
-        <div class="channels">
-          <a href="mailto:hello@jozefanyalai.com" class="channel">
-            <div class="channel-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-            <div class="channel-text"><strong data-i18n="contact.email.label">Email</strong><span>hello@jozefanyalai.com</span></div>
-          </a>
-          <a href="https://www.linkedin.com/in/jozef-anyalai/" class="channel" target="_blank" rel="noopener">
-            <div class="channel-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
-            <div class="channel-text"><strong data-i18n="contact.li.label">LinkedIn</strong><span>/in/jozefanyalai</span></div>
-          </a>
-          <a href="https://github.com/jozefanyalai" class="channel" target="_blank" rel="noopener">
-            <div class="channel-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></div>
-            <div class="channel-text"><strong data-i18n="contact.gh.label">GitHub</strong><span>/jozefanyalai</span></div>
-          </a>
-        </div>
-      </div>
-
-      <form class="contact-form reveal d1" id="contactForm" novalidate>
-        <div class="fg-row">
-          <div class="fg">
-            <label for="name"><span data-i18n="form.name.label">Name</span> <span class="req">*</span></label>
-            <input type="text" id="name" name="name" placeholder="Ada Lovelace" autocomplete="name" data-i18n-ph="form.name.ph">
-            <div class="err" id="err-name" data-i18n="form.err.name">Please enter your name</div>
-          </div>
-          <div class="fg">
-            <label for="email"><span data-i18n="form.email.label">Email</span> <span class="req">*</span></label>
-            <input type="email" id="email" name="email" placeholder="ada@example.com" autocomplete="email" data-i18n-ph="form.email.ph">
-            <div class="err" id="err-email" data-i18n="form.err.email">Please enter a valid email</div>
-          </div>
-        </div>
-        <div class="fg">
-          <label for="message"><span data-i18n="form.msg.label">Message</span> <span class="req">*</span></label>
-          <textarea id="message" name="message" placeholder="A few lines about the role or project…" data-i18n-ph="form.msg.ph"></textarea>
-          <div class="err" id="err-message" data-i18n="form.err.msg">Message can't be empty</div>
-        </div>
-        <button type="submit" class="btn btn-primary submit">
-          <span id="submitText" data-i18n="form.submit">Send message</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-        </button>
-        <div class="ok-msg" id="formSuccess">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          <span data-i18n="form.ok">Message sent — talk soon.</span>
-        </div>
-      </form>
-    </div>
-  </div>
-</section>
-
-</div><!-- /view-testing -->
-
-
-<!-- ============================================================
-     VIEW: WEB DEV (blue)
-     ============================================================ -->
-<div id="view-webdev" class="view-content">
-
-<!-- HERO -->
-<section class="hero" id="home-wd">
-  <div class="hero-glow"></div>
-  <div class="hero-content">
-    <div class="hero-text">
-      <div class="hero-pill reveal">
-        <span class="tag" data-i18n="wd.hero.tag">DESIGN &middot; CODE &middot; SHIP</span>
-        <span data-i18n="wd.hero.tagline">Full-stack web development</span>
-        <span class="arrow">&rarr;</span>
-      </div>
-      <h1 class="hero-title reveal d1">
-        <span data-i18n="wd.hero.title1">Custom websites,</span><br>
-        <span class="gradient" data-i18n="wd.hero.title2">built from scratch.</span>
-      </h1>
-      <p class="hero-sub reveal d2" data-i18n="wd.hero.sub">
-        No templates. No page builders. I design your brand identity, prototype in Figma, and hand-code every pixel — from interactive WebGL experiences to full-stack apps with backends and APIs.
-      </p>
-      <div class="hero-cta-row reveal d3">
-        <a href="#contact-wd" class="btn btn-primary">
-          <span data-i18n="wd.hero.cta">Start a project</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
-        <a href="#services-wd" class="btn btn-ghost">
-          <span data-i18n="wd.hero.services">See services</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
-        </a>
-      </div>
-    </div>
-
-    <div class="hero-stage-wrap reveal d4">
-      <div class="sphere" aria-hidden="true"></div>
-      <div class="sphere-tags">
-        <div class="ftag">
-          <div class="ftag-ico">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-          </div>
-          <div>
-            <div class="ftag-label" data-i18n="wd.ftag1.label">Code</div>
-            <div class="ftag-value" data-i18n="wd.ftag1.value">HTML &middot; CSS &middot; JS</div>
-          </div>
-        </div>
-        <div class="ftag">
-          <div class="ftag-ico">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
-          </div>
-          <div>
-            <div class="ftag-label" data-i18n="wd.ftag2.label">Branding</div>
-            <div class="ftag-value" data-i18n="wd.ftag2.value">Figma &middot; Identity</div>
-          </div>
-        </div>
-        <div class="ftag">
-          <div class="ftag-ico">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-          </div>
-          <div>
-            <div class="ftag-label" data-i18n="wd.ftag3.label">Graphics</div>
-            <div class="ftag-value" data-i18n="wd.ftag3.value">WebGL &middot; GLSL</div>
-          </div>
-        </div>
-        <div class="ftag">
-          <div class="ftag-ico">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <div>
-            <div class="ftag-label" data-i18n="wd.ftag4.label">Backend</div>
-            <div class="ftag-value" data-i18n="wd.ftag4.value">FastAPI &middot; PostgreSQL</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section class="block about" id="services-wd">
-  <div class="container">
-    <div class="block-head">
-      <div class="pill reveal"><span class="dot"></span><span data-i18n="wd.svc.pill">Services</span></div>
-      <h2 class="block-title reveal d1"><span data-i18n="wd.svc.title1">Everything you need, </span><span class="gradient" data-i18n="wd.svc.title2">nothing you don't.</span></h2>
-      <p class="block-sub reveal d2" data-i18n="wd.svc.sub">From branding and Figma prototypes to hand-coded sites and full-stack apps — I handle everything end to end.</p>
-    </div>
-
-    <div class="feature-grid">
-      <div class="feature big reveal">
-        <div class="feature-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
-        </div>
-        <h3 data-i18n="wd.feat.brand.title">Brand Identity &amp; Design</h3>
-        <div class="bio">
-          <p data-i18n="wd.feat.brand.p1"><strong>Your brand, designed from scratch.</strong> I create complete visual identities — logo, color palette, typography, and design system — before writing a single line of code.</p>
-          <p data-i18n="wd.feat.brand.p2">Everything starts in <strong>Figma</strong>: wireframes, high-fidelity mockups, interactive prototypes. You approve the design, then I build it pixel-perfect.</p>
-          <p data-i18n="wd.feat.brand.p3">Mobile-first, accessible, consistent across every screen. Your brand looks the same on a phone, tablet, or 4K monitor.</p>
-        </div>
-      </div>
-
-      <div class="feature reveal d1">
-        <div class="feature-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
-        </div>
-        <h3 data-i18n="wd.feat.web.title">Hand-Coded Websites</h3>
-        <p data-i18n="wd.feat.web.desc">No templates, no WordPress. Every site is written from a blank file with clean HTML, CSS, and JavaScript. Fast, unique, and fully yours.</p>
-      </div>
-
-      <div class="feature reveal d2">
-        <div class="feature-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-        </div>
-        <h3 data-i18n="wd.feat.gl.title">Interactive WebGL</h3>
-        <p data-i18n="wd.feat.gl.desc">Custom shader effects, 3D visuals, and interactive animations using WebGL and GLSL. The kind of detail that makes a site memorable.</p>
-      </div>
-
-      <div class="feature reveal d2">
-        <div class="feature-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-        </div>
-        <h3 data-i18n="wd.feat.app.title">Full-Stack Apps</h3>
-        <p data-i18n="wd.feat.app.desc">Web applications with auth, databases, and APIs. Built with Python, FastAPI, PostgreSQL, and Supabase.</p>
-      </div>
-
-      <div class="feature reveal d3">
-        <div class="feature-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-        </div>
-        <h3 data-i18n="wd.feat.host.title">Hosting &amp; Maintenance</h3>
-        <p data-i18n="wd.feat.host.desc">Deployment on Docker or Linux VPS, domain setup, SSL, uptime monitoring, and ongoing updates.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PORTFOLIO -->
-<section class="block" id="portfolio-wd">
-  <div class="block-head">
-    <span class="pill reveal"><span class="dot"></span><span data-i18n="wd.portfolio.pill">Work</span></span>
-    <h2 class="block-title reveal d1">
-      <span data-i18n="wd.portfolio.title1">Recent </span><span class="gradient" data-i18n="wd.portfolio.title2">projects.</span>
-    </h2>
-    <p class="block-sub reveal d2" data-i18n="wd.portfolio.sub">A selection of websites and apps I've built for clients and side projects.</p>
-  </div>
-
-  <div class="portfolio-grid">
-      
-    <a href="https://irsia-production.vercel.app/" target="_blank" rel="noopener" class="portfolio-item reveal">
-      <div class="portfolio-thumb">
-        <img src="porfolio/irsia-prod.jpg" alt="irsia-production – jedinečné portfólio pre fotografov" loading="lazy" width="662" height="662" decoding="async">
-      </div>
-      <div class="portfolio-info">
-        <h3>irsia-production</h3>
-        <p>Jedinečné portfólio pre fotografov</p>
-        <span class="portfolio-tags">
-          <span>HTML</span><span>CSS</span><span>JS</span><span>Supabase</span>
-        </span>
-      </div>
-    </a>
-    <!-- === ADD NEW PROJECTS HERE === -->
-    <!-- Copy this block for each new project:
-    <a href="https://example.com" target="_blank" rel="noopener" class="portfolio-item reveal">
-      <div class="portfolio-thumb">
-        <img src="portfolio/project-name.jpg" alt="Project Name" loading="lazy">
-      </div>
-      <div class="portfolio-info">
-        <h3>Project Name</h3>
-        <p>Short description of what the project is.</p>
-        <span class="portfolio-tags">
-          <span>HTML</span><span>CSS</span><span>JS</span>
-        </span>
-      </div>
-    </a>
-    -->
-
-    <a href="https://jozefanyalai.com" target="_blank" rel="noopener" class="portfolio-item reveal">
-      <div class="portfolio-thumb">
-        <div class="portfolio-placeholder">JA</div>
-      </div>
-      <div class="portfolio-info">
-        <h3 data-i18n="wd.portfolio.p1.title">This Portfolio</h3>
-        <p data-i18n="wd.portfolio.p1.desc">Custom-built portfolio with WebGL liquid glass spheres, dual-view routing, and EN/SK language support.</p>
-        <span class="portfolio-tags">
-          <span>WebGL</span><span>GLSL</span><span>JS</span><span>CSS</span>
-        </span>
-      </div>
-    </a>
-
-  </div>
-</section>
-
-<!-- TECH STACK -->
-<section class="block skills" id="stack-wd">
-  <div class="container">
-    <div class="block-head">
-      <div class="pill reveal"><span class="dot"></span><span data-i18n="wd.stack.pill">Stack</span></div>
-      <h2 class="block-title reveal d1"><span data-i18n="wd.stack.title1">Tools </span><span class="gradient" data-i18n="wd.stack.title2">&amp; tech.</span></h2>
-      <p class="block-sub reveal d2" data-i18n="wd.stack.sub">What I build with, grouped by layer.</p>
-    </div>
-
-    <div class="skill-grid">
-      <div class="skill-card reveal">
-        <div class="skill-head">
-          <div class="skill-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
-          <span class="skill-name" data-i18n="wd.sk.front">Frontend</span>
-          <span class="skill-count">05</span>
-        </div>
-        <div class="skill-list">
-          <span class="chip"><span class="dot"></span>HTML / CSS</span>
-          <span class="chip"><span class="dot"></span>JavaScript</span>
-          <span class="chip"><span class="dot"></span>WebGL / GLSL</span>
-          <span class="chip"><span class="dot"></span>CSS Custom Props</span>
-          <span class="chip"><span class="dot"></span>Responsive</span>
-        </div>
-      </div>
-
-      <div class="skill-card reveal d1">
-        <div class="skill-head">
-          <div class="skill-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></div>
-          <span class="skill-name" data-i18n="wd.sk.design">Design</span>
-          <span class="skill-count">04</span>
-        </div>
-        <div class="skill-list">
-          <span class="chip"><span class="dot"></span>Figma</span>
-          <span class="chip"><span class="dot"></span>Brand Identity</span>
-          <span class="chip"><span class="dot"></span>UI / UX</span>
-          <span class="chip"><span class="dot"></span>Prototyping</span>
-        </div>
-      </div>
-
-      <div class="skill-card reveal d2">
-        <div class="skill-head">
-          <div class="skill-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
-          <span class="skill-name" data-i18n="wd.sk.back">Backend</span>
-          <span class="skill-count">03</span>
-        </div>
-        <div class="skill-list">
-          <span class="chip"><span class="dot"></span>Python</span>
-          <span class="chip"><span class="dot"></span>FastAPI</span>
-          <span class="chip"><span class="dot"></span>REST APIs</span>
-        </div>
-      </div>
-
-      <div class="skill-card reveal d1">
-        <div class="skill-head">
-          <div class="skill-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
-          <span class="skill-name" data-i18n="wd.sk.data">Data &amp; Auth</span>
-          <span class="skill-count">03</span>
-        </div>
-        <div class="skill-list">
-          <span class="chip"><span class="dot"></span>PostgreSQL</span>
-          <span class="chip"><span class="dot"></span>Supabase</span>
-          <span class="chip"><span class="dot"></span>OAuth / JWT</span>
-        </div>
-      </div>
-
-      <div class="skill-card reveal d2">
-        <div class="skill-head">
-          <div class="skill-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-          <span class="skill-name" data-i18n="wd.sk.deploy">Deploy</span>
-          <span class="skill-count">04</span>
-        </div>
-        <div class="skill-list">
-          <span class="chip"><span class="dot"></span>Docker</span>
-          <span class="chip"><span class="dot"></span>Linux VPS</span>
-          <span class="chip"><span class="dot"></span>Vercel</span>
-          <span class="chip"><span class="dot"></span>SSL / DNS</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA STRIP -->
-<section class="cta-strip">
-  <div class="cta-card reveal">
-    <h2 data-i18n="wd.cta.title">Have a project in mind?</h2>
-    <p data-i18n="wd.cta.sub">I take on a limited number of projects at a time to keep quality high. Let's talk about what you need.</p>
-    <div class="btn-row">
-      <a href="#contact-wd" class="btn btn-primary">
-        <span data-i18n="wd.cta.btn">Start a conversation</span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section class="block contact" id="contact-wd">
-  <div class="container">
-    <div class="block-head">
-      <div class="pill reveal"><span class="dot"></span><span data-i18n="wd.contact.pill">Contact</span></div>
-      <h2 class="block-title reveal d1"><span data-i18n="wd.contact.title1">Let's </span><span class="gradient" data-i18n="wd.contact.title2">build.</span></h2>
-      <p class="block-sub reveal d2" data-i18n="wd.contact.sub">Tell me about your project and I'll get back to you within 24 hours.</p>
-    </div>
-
-    <div class="contact-grid">
-      <div class="reveal">
-        <div class="channels">
-          <a href="mailto:hello@jozefanyalai.com" class="channel">
-            <div class="channel-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-            <div class="channel-text"><strong data-i18n="contact.email.label">Email</strong><span>hello@jozefanyalai.com</span></div>
-          </a>
-          <a href="https://www.linkedin.com/in/jozef-anyalai/" class="channel" target="_blank" rel="noopener">
-            <div class="channel-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
-            <div class="channel-text"><strong data-i18n="contact.li.label">LinkedIn</strong><span>/in/jozefanyalai</span></div>
-          </a>
-          <a href="https://github.com/jozefanyalai" class="channel" target="_blank" rel="noopener">
-            <div class="channel-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></div>
-            <div class="channel-text"><strong data-i18n="contact.gh.label">GitHub</strong><span>/jozefanyalai</span></div>
-          </a>
-        </div>
-      </div>
-
-      <form class="contact-form reveal d1" id="contactFormWd" novalidate>
-        <div class="fg-row">
-          <div class="fg">
-            <label for="name-wd"><span data-i18n="form.name.label">Name</span> <span class="req">*</span></label>
-            <input type="text" id="name-wd" name="name" placeholder="Your name" autocomplete="name" data-i18n-ph="form.name.ph">
-            <div class="err" id="err-name-wd" data-i18n="form.err.name">Please enter your name</div>
-          </div>
-          <div class="fg">
-            <label for="email-wd"><span data-i18n="form.email.label">Email</span> <span class="req">*</span></label>
-            <input type="email" id="email-wd" name="email" placeholder="you@example.com" autocomplete="email" data-i18n-ph="form.email.ph">
-            <div class="err" id="err-email-wd" data-i18n="form.err.email">Please enter a valid email</div>
-          </div>
-        </div>
-        <div class="fg">
-          <label for="message-wd"><span data-i18n="wd.form.msg.label">Project details</span> <span class="req">*</span></label>
-          <textarea id="message-wd" name="message" placeholder="Tell me about what you need — type of site, timeline, budget range…" data-i18n-ph="wd.form.msg.ph"></textarea>
-          <div class="err" id="err-message-wd" data-i18n="wd.form.err.msg">Please describe your project</div>
-        </div>
-        <button type="submit" class="btn btn-primary submit">
-          <span id="submitTextWd" data-i18n="form.submit">Send message</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-        </button>
-        <div class="ok-msg" id="formSuccessWd">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          <span data-i18n="wd.form.ok">Message sent — I'll be in touch soon.</span>
-        </div>
-      </form>
-    </div>
-  </div>
-</section>
-
-</div><!-- /view-webdev -->
-
-
-<footer>
-  <div class="foot-inner">
-    <p>&copy; 2026 Jozef Anyalai</p>
-    <div class="foot-links">
-      <a href="#" id="footHome" data-i18n="foot.home">Home</a>
-      <a href="#about" data-i18n="foot.about">About</a>
-      <a href="#skills" data-i18n="foot.skills">Skills</a>
-      <a href="#contact" data-i18n="foot.contact">Contact</a>
-    </div>
-  </div>
-</footer>
-
-<script src="dist/js/bundle.min.js?v=5" defer></script>
+<script src="/dist/js/bundle.min.js?v=6" defer></script>
 </body>
 </html>

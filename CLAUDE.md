@@ -8,186 +8,137 @@ This file documents the codebase for Claude Code sessions. Read this before maki
 
 ```
 moj_web/
-├── index.html          ← Lean HTML shell, no inline CSS or JS
-├── css/
-│   └── styles.css      ← All styles (~400 lines)
-├── js/
-│   ├── sphere.js       ← WebGL liquid glass sphere (self-contained IIFE)
-│   └── main.js         ← Nav, parallax, scroll reveal, card spotlight, form
-├── CLAUDE.md           ← This file
-└── README.md           ← Project overview and editing guide
+├── index.html              ← Splash landing page (data-page="splash")
+├── qa-automatizacia.html   ← QA testing service page (data-page="testing")
+├── tvorba-webov.html       ← Web development service page (data-page="webdev")
+├── src/
+│   ├── css/
+│   │   └── styles.css      ← All styles (~1300 lines)
+│   └── js/
+│       ├── main.js         ← Entry point: imports and inits all modules
+│       ├── router.js       ← Page detection, smooth scroll, CV dropdown
+│       ├── nav.js          ← Navbar scroll state, section mapping, hamburger
+│       ├── parallax.js     ← Hero element parallax on scroll
+│       ├── reveal.js       ← IntersectionObserver scroll reveal
+│       ├── spotlight.js    ← Card cursor-tracking glow effect
+│       ├── forms.js        ← Contact form validation & submission
+│       ├── i18n.js         ← EN/SK language toggle
+│       └── sphere/         ← [DEAD CODE] WebGL sphere (removed, not imported)
+├── dist/
+│   ├── css/styles.min.css  ← Built CSS
+│   └── js/bundle.min.js    ← Built JS (~16 KB)
+├── vercel.json             ← Vercel config with page-specific rewrites
+├── sitemap.xml             ← SEO sitemap
+├── robots.txt              ← Crawler rules
+├── CLAUDE.md               ← This file
+└── build.js                ← Build script (esbuild + terser + clean-css)
 ```
 
 ---
 
-## Critical Constants (must stay in sync)
+## Multi-Page Architecture
 
-Two constants are duplicated between the shader (GLSL) and JavaScript. If you change one, change the other:
+The site uses **real separate HTML pages** (not SPA routing) for SEO:
 
-| Value | Shader location | JS location |
-|-------|----------------|-------------|
-| `0.20` (sphere X offset) | `uv.x -= 0.20` in `main()` | `const SPHERE_OFF_X = 0.20` |
-| `0.34` (sphere radius) | `float R = 0.34` in `liquidField()` and `main()` | `const SPHERE_R = 0.34` |
+| URL | HTML file | `data-page` | Theme |
+|-----|-----------|-------------|-------|
+| `/` | `index.html` | `splash` | Purple (default) |
+| `/qa-automatizacia` | `qa-automatizacia.html` | `testing` | Purple (default) |
+| `/tvorba-webov` | `tvorba-webov.html` | `webdev` | Blue (CSS var overrides) |
 
-These control where `updateCursorUV()` maps cursor screen coordinates into shader UV space.
+Page detection: `document.body.dataset.page` — used by router.js, nav.js, parallax.js.
 
----
-
-## WebGL Sphere (`js/sphere.js`)
-
-### Architecture overview
-
-A fullscreen quad (`TRIANGLE_STRIP`) with a fragment shader that ray-marches a 2D signed distance field and reconstructs a 3D normal for lighting.
-
-### Quality tiers (adaptive performance)
-
-The shader is generated at runtime via `makeFS(quality)` with three tiers:
-
-| Tier | DPR cap | FBM octaves | Satellites | Bump mapping | Caustic | Normal diffs |
-|------|---------|-------------|------------|-------------|---------|-------------|
-| 0 (low) | 0.75 | 2 | 2 | off | off | forward (2 calls) |
-| 1 (medium) | 1.0 | 2 | 3 | on | off | forward (2 calls) |
-| 2 (high) | 1.5 | 3 | 3 | on | on | central (4 calls) |
-
-Detection: GPU renderer string + mobile UA + `hardwareConcurrency`. If frame time exceeds 28ms (~35fps) after 90 frames, auto-downgrades one tier and recompiles the shader.
-
-### Canvas setup
-
-- `position: fixed; inset: 0; z-index: 0; pointer-events: none` — fullscreen, behind all content
-- DPR-aware sizing with tier-dependent cap (see quality tiers above)
-- `alpha: true, premultipliedAlpha: true` + `blendFunc(ONE, ONE_MINUS_SRC_ALPHA)` for correct transparency compositing
-
-### Shader: SDF metaball system
-
-**`smax(a, b, k)`** — smooth union of two inside-positive SDF fields:
-```glsl
-float h = clamp(0.5 + 0.5*(a-b)/k, 0.0, 1.0);
-return mix(b, a, h) + k*h*(1.0-h);
-```
-`k` is the blend radius. Larger = rounder joint. Current value for all joints: `0.11`.
-
-**`liquidField(p, t, drag)`** — combined metaball field returning positive-inside values:
-- Main sphere: `R - length(p)` where `R = 0.34`
-- Drag pull-blob: emerges from sphere in drag direction — actual silhouette deformation
-- 5 satellite droplets: orbit radii oscillate `0.32 → 0.54` via `sin()`, creating smooth merge/separate
-- Early discard: `if(f0 < -0.012) discard` avoids unnecessary fragment computation
-
-### Shader: Normal reconstruction
-
-2D field gradient → 3D normal using spherical approximation:
-```glsl
-float e2  = 0.009;   // wide step to span smax blend region, avoids saddle-point kink
-float gfx = liquidField(uv+vec2(e2,0.), T, u_drag) - liquidField(uv-vec2(e2,0.), T, u_drag);
-float gfy = liquidField(uv+vec2(0.,e2), T, u_drag) - liquidField(uv-vec2(0.,e2), T, u_drag);
-
-float dsurf = max(R - f0, 0.0);
-float zsurf = sqrt(max(0.0, R*R - dsurf*dsurf));
-vec3  N     = normalize(vec3(dsurf * nxy, zsurf));
-float depth = zsurf / R;  // 1.0 at centre, 0.0 at silhouette edge
-```
-Exact for the main sphere; approximate but correct for satellite blobs (each blob's front face is (0,0,1) toward viewer).
-
-### Shader: Seam artifact fix
-
-Dark disk artifact at droplet-sphere junctions is fixed by three settings:
-1. **Smooth blend radius** `k = 0.11` (was 0.075) — wider smax blend region
-2. **Gradient step** `e2 = 0.009` (was 0.0045) — spans the blend region, no saddle-point kink
-3. **Depth-weighted bump** `bumpAmp *= clamp(depth * 4.0, 0.10, 1.0)` — suppresses bump at grazing-angle seams where it would tilt normals backward into the surface
-
-### Shader: Rotation convention
-
-Cursor hover: moves `ry` and `rx` so surface tracks cursor naturally.
-```glsl
-float ry = -u_mouse.x*.90 + u_rot.x;  // negative = correct direction
-float rx =  u_mouse.y*.55 + u_rot.y;  // positive = correct direction
-```
-
-Drag accumulation: negated deltas = correct direction.
-```js
-rot.vx -= deltaX * 0.00018;  // negative
-rot.vy -= deltaY * 0.00018;  // negative
-```
-
-**Do not flip these signs** — they were deliberately corrected.
-
-### Shader: Texture system
-
-`slime(p, t)` — domain-warped fBm (2 warp levels) for the liquid surface texture. Runs in rotated normal-space so the texture appears fixed to the sphere surface.
-
-`n3(p)` — value noise using hash + quintic interpolation. 4-octave fBm.
-
-Bump mapping: central differences of `slime()` in normal-space → rotated back to view space → added to geometric normal as a small perturbation.
-
-### JS: Input system
-
-| State | Description |
-|-------|-------------|
-| `mouse.{x,y}` | Smoothed (lerp 0.055) normalized cursor position for lighting |
-| `rot.{x,y}` | Accumulated rotation angle (spring-damped, decay 0.97) |
-| `csr.{x,y,force}` | Cursor UV + spring-damped deformation force |
-| `dragUV.{x,y}` | Smoothed drag vector for pull-blob deformation |
-
-Drag sources: `document.mousedown/mousemove` + `window.touchstart/touchmove` — fires anywhere on the page.
+Vercel rewrites map clean URLs to `.html` files. Legacy hash redirects (`#testing` → `/qa-automatizacia`) in index.html.
 
 ---
 
-## CSS (`css/styles.css`)
+## CSS Architecture
 
-### Z-index stack
+### Design Tokens
+
+Purple theme (default):
+```css
+--accent: #8B5CF6; --accent-2: #A855F7; --accent-3: #C084FC;
+--accent-glow: rgba(139, 92, 246, 0.45);
+--border: rgba(139, 92, 246, 0.13); --border-strong: rgba(168, 85, 247, 0.28);
+```
+
+Blue theme (`body[data-page="webdev"]` overrides):
+```css
+--accent: #38BDF8; --accent-2: #0EA5E9; --accent-3: #7DD3FC;
+--accent-glow: rgba(56, 189, 248, 0.45);
+--border: rgba(56, 189, 248, 0.13); --border-strong: rgba(14, 165, 233, 0.28);
+```
+
+### Z-index Stack
 
 | Layer | z-index | Element |
 |-------|---------|---------|
-| WebGL canvas | 0 | `#sphereCanvas` |
 | Background grid | 0 | `.bg-grid` |
 | Page content | 1 | `.hero`, sections, footer |
 | Hero glow | 1 | `.hero-glow` |
 | Nav | 100 | `nav#navbar` |
 
-### Entrance animations
+### Glassmorphism Contact Form
 
-`@keyframes rotoscopeIn` — slides content up from `translateY(32px)` with a fade-in. Applied to hero elements with staggered `animation-delay` (0.1s–0.5s) via `.d1`–`.d4` classes.
+The contact form uses a custom glass design:
+- **Container** `.glass-form`: `backdrop-filter: blur(24px) saturate(130%)`, dark glass bg `rgba(15, 10, 30, 0.45)`, with `@supports` fallback
+- **Fields** `.glass-field`: Floating labels via CSS `:placeholder-shown` + sibling selector. Labels sit inside inputs at rest, slide up to mono uppercase on focus/filled
+- **Left accent bar**: `border-left: 2px solid var(--border-strong)` → `var(--accent)` on focus
+- **Focus light**: `::before` pseudo-element with `var(--accent-glow)` radial gradient, `opacity: 0` → `0.15` on `:focus-within`
+- **Error states**: Red accent bar, `fieldShake` animation, error text slides in with height/opacity transition
+- **Label DOM order**: `<input>` then `<label>` (required for CSS `+` sibling selectors)
+- **Placeholder trick**: `placeholder=" "` (space) enables `:placeholder-shown` detection
 
-Hero elements also get scroll parallax in `main.js`.
+### Entrance Animations
 
-### Card spotlight
+`@keyframes rotoscopeIn` — slides up with blur dissolve. Staggered via `.d1`–`.d4` delay classes.
 
-`.feature` and `.skill-card` use CSS custom properties `--mx` and `--my` (updated on `mousemove` by `main.js`) to render a radial gradient glow following the cursor.
+`.reveal` class + IntersectionObserver → adds `.visible` class for scroll-triggered entrance.
+
+### Card Spotlight
+
+`.feature` and `.skill-card` use `--mx`/`--my` CSS vars (set by spotlight.js on mousemove) for cursor-tracking radial gradient glow.
 
 ---
 
-## JS: `main.js`
+## JS Modules
 
-| Feature | Implementation |
-|---------|---------------|
-| Nav scroll state | `classList.toggle('scrolled', scrollY > 24)` |
-| Hero parallax | Different `translateY` multipliers per element, all rAF-throttled |
-| Scroll reveal | `IntersectionObserver` on `.reveal` elements, adds `.visible` class |
-| Card spotlight | `mousemove` on `.feature`/`.skill-card` sets `--mx`/`--my` CSS vars |
-| Contact form | Client-side validation + fake submit with 900ms delay |
+| Module | Purpose |
+|--------|---------|
+| `router.js` | Reads `data-page`, smooth scroll for `#anchor` links, CV dropdown toggle |
+| `nav.js` | Scroll class on nav, section ID mapping per page, hamburger menu |
+| `parallax.js` | Hero element parallax (skipped on splash page) |
+| `reveal.js` | IntersectionObserver scroll reveal |
+| `spotlight.js` | Card cursor glow with lazy rect caching (WeakMap + stale flag) |
+| `forms.js` | Contact form validation & fetch POST to `/api/contact` |
+| `i18n.js` | EN/SK language toggle via `data-i18n` attributes |
+
+### forms.js
+
+`initForm(formId, fieldDefs, submitTextId, successId, formType)` — generic form handler.
+- Adds `.invalid` class to input, `.show` class to `.err` div
+- POSTs JSON to `/api/contact` with `{name, email, message, form}`
+- Two instances: `contactForm` (QA page) and `contactFormWd` (webdev page)
 
 ---
 
 ## Common Edits
 
-### Change sphere size
-Edit `float R = 0.34` in **both** places in `js/sphere.js` (`liquidField` and `main`) **and** `const SPHERE_R = 0.34` in the same file.
-
-### Change sphere horizontal position
-Edit `uv.x -= 0.20` in `js/sphere.js` (shader `main()`) **and** `const SPHERE_OFF_X = 0.20` in the same file.
-
-### Change sphere colors
-In `js/sphere.js`, find `cValley`, `cMid`, `cRidge` in the fragment shader. These are `vec3(r, g, b)` in linear light (0–1 range, not 0–255).
-
-### Change satellite droplet behaviour
-In `liquidField()` in `js/sphere.js`:
-- Orbit range: `mix(0.32, 0.54, ...)` — first value is minimum orbit (merged), second is maximum (separated)
-- Droplet size: `float dropR = 0.058 + 0.015 * sin(...)` — base size + oscillation amplitude
-- Number of droplets: change the `for(int i=0; i<5; i++)` limit (GLSL requires compile-time constant)
-
 ### Add a new section
-1. Add HTML between existing sections in `index.html`
-2. Add any new CSS to `css/styles.css` at the bottom
+1. Add HTML between existing sections in the relevant `.html` file
+2. Add CSS to `src/css/styles.css`
 3. Add `.reveal` class to animatable elements — scroll reveal is automatic
+4. Run `npm run build`
 
 ### Update contact info
-Edit `index.html` directly — search for `hello@anyalai.dev`, `jozefanyalai`.
+Search for `hello@jozefanyalai.com` across all HTML files.
+
+### Change theme colors
+Edit CSS variables in `:root` (purple) or `body[data-page="webdev"]` (blue) in `styles.css`.
+
+### Modify contact form fields
+1. Edit HTML in both `qa-automatizacia.html` and `tvorba-webov.html`
+2. Keep label AFTER input for floating label CSS to work
+3. Keep `placeholder=" "` on inputs
+4. Update `forms.js` field definitions if IDs change

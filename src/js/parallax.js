@@ -2,26 +2,24 @@
 // parallax.js — Hero element parallax on scroll
 // ============================================================
 
-import { getCurrentView } from './router.js';
-
 export function initParallax() {
+  const page = document.body.dataset.page;
+  if (page === 'splash') return;  // no parallax on splash
+
   let ticking = false;
 
-  function onScroll() {
-    if (getCurrentView() === 'splash') return;
+  window.addEventListener('scroll', () => {
     if (ticking) return;
     ticking = true;
 
     requestAnimationFrame(() => {
       const sy = window.scrollY;
-      const view = document.getElementById('view-' + getCurrentView());
-      if (!view) { ticking = false; return; }
 
-      const pill  = view.querySelector('.hero-pill');
-      const title = view.querySelector('.hero-title');
-      const sub   = view.querySelector('.hero-sub');
-      const cta   = view.querySelector('.hero-cta-row');
-      const tags  = view.querySelector('.sphere-tags');
+      const pill  = document.querySelector('.hero-pill');
+      const title = document.querySelector('.hero-title');
+      const sub   = document.querySelector('.hero-sub');
+      const cta   = document.querySelector('.hero-cta-row');
+      const tags  = document.querySelector('.sphere-tags');
 
       if (pill)  pill.style.transform  = 'translateY(' + (sy * -0.08) + 'px)';
       if (title) title.style.transform = 'translateY(' + (sy * -0.13) + 'px)';
@@ -31,7 +29,5 @@ export function initParallax() {
 
       ticking = false;
     });
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
+  }, { passive: true });
 }

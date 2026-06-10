@@ -19,7 +19,7 @@ export function updateViewport() {
 window.addEventListener('resize', updateViewport);
 
 export const VIEWS = {
-  splash:  { s1: { x: -0.46, y: 0.08 }, s2: { x: 0.46, y: 0.08 }, s1o: 0, s2o: 0 },
+  splash:  { s1: { x: -0.46, y: 0.08 }, s2: { x: 0.46, y: 0.08 }, s1o: 1, s2o: 1 },
   testing: { s1: { x:  0.20, y: 0    }, s2: { x: 0.90, y: 0    }, s1o: 1, s2o: 0 },
   webdev:  { s1: { x: -0.90, y: 0    }, s2: { x: 0.20, y: 0    }, s1o: 0, s2o: 1 },
 };
