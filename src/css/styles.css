@@ -494,7 +494,7 @@ h1.hero-title .gradient {
 /* ---------- FLOATING INFO TAGS ---------- */
 .sphere-tags {
   position: absolute;
-  inset: -20%;
+  inset: 0;
   pointer-events: none;
   z-index: 2;
 }
@@ -1460,7 +1460,7 @@ body[data-page="webdev"] .lang-toggle span.active {
   .splash-inner { width: calc(100% - 32px); }
   .splash-card { padding: 24px 20px 22px; }
   .splash-footer { font-size: 12px; gap: 10px; flex-wrap: wrap; justify-content: center; }
-  .sphere-tags { inset: -10%; }
+  .sphere-tags { inset: 0; }
   .ftag { padding: 8px 10px; border-radius: 10px; }
   .ftag-label { font-size: 9px; }
   .ftag-value { font-size: 11px; }
